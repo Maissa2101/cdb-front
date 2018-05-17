@@ -1,0 +1,16 @@
+.header {
+    background-color: midnightblue;
+    color: #FFFFFF;
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-family: "Century Schoolbook L";
+}
+
+a {
+    color: azure;
+}
+
+a:link
+{
+    text-decoration:none;
+}
