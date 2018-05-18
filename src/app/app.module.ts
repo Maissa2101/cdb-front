@@ -15,30 +15,33 @@ import {CompaniesComponent} from './company/companies/companies.component';
 import {CompanyDetailsComponent} from './company/company-details/company-details.component';
 import {UpdateCompanyComponent} from './company/update-company/update-company.component';
 import {CompanyService} from './company/company.service';
+import {MatFormFieldModule, MatInputModule} from '@angular/material';
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HeaderComponent,
-        FooterComponent,
-        CompanyComponent,
-        CompanyDetailsComponent,
-        CompaniesComponent,
-        CreateCompanyComponent,
-        UpdateCompanyComponent,
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        CustomMaterialModule,
-        AppRoutingModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-    ],
-    providers: [ CompanyService ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    CompanyComponent,
+    CompanyDetailsComponent,
+    CompaniesComponent,
+    CreateCompanyComponent,
+    UpdateCompanyComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    CustomMaterialModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
+  providers: [CompanyService],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

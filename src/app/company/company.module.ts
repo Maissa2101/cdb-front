@@ -23,8 +23,6 @@ import {CompaniesComponent} from './companies/companies.component';
         CompanyComponent,
         CompanyDetailsComponent,
         CompaniesComponent,
-        CreateCompanyComponent,
-        UpdateCompanyComponent,
     ],
     declarations: [
         CompanyComponent,
