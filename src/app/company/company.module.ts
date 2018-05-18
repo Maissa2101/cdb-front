@@ -6,6 +6,9 @@ import {CompanyService} from './company.service';
 import {RouterModule} from '@angular/router';
 import {CompanyComponent} from './company.component';
 import {CompanyDetailsComponent} from './company-details/company-details.component';
+import {UpdateCompanyComponent} from './update-company/update-company.component';
+import {CreateCompanyComponent} from './create-company/create-company.component';
+import {CompaniesComponent} from './companies/companies.component';
 
 
 @NgModule({
@@ -19,8 +22,16 @@ import {CompanyDetailsComponent} from './company-details/company-details.compone
     exports: [
         CompanyComponent,
         CompanyDetailsComponent,
+        CompaniesComponent,
+        CreateCompanyComponent,
+        UpdateCompanyComponent,
     ],
     declarations: [
+        CompanyComponent,
+        CreateCompanyComponent,
+        UpdateCompanyComponent,
+        CompaniesComponent,
+        CompanyDetailsComponent,
     ],
     providers: [
         CompanyService,

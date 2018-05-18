@@ -3,26 +3,28 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
-import {CompanyComponent} from './company/company.component';
 import {AppRoutingModule} from './/app-routing.module';
-import {CompaniesComponent} from './company/companies/companies.component';
-import {CompanyDetailsComponent} from './company/company-details/company-details.component';
-import {CreateCompanyComponent} from './company/create-company/create-company.component';
-import {UpdateCompanyComponent} from './company/update-company/update-company.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CustomMaterialModule} from './custom-material/custom-material.module';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
-import {MatFormFieldModule, MatInputModule} from '@angular/material';
+import {ReactiveFormsModule} from '@angular/forms';
+import {FooterComponent} from './footer/footer.component';
+import {CompanyComponent} from './company/company.component';
+import {CreateCompanyComponent} from './company/create-company/create-company.component';
+import {CompaniesComponent} from './company/companies/companies.component';
+import {CompanyDetailsComponent} from './company/company-details/company-details.component';
+import {UpdateCompanyComponent} from './company/update-company/update-company.component';
+import {CompanyService} from './company/company.service';
+
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
+        FooterComponent,
         CompanyComponent,
-        CompaniesComponent,
         CompanyDetailsComponent,
+        CompaniesComponent,
         CreateCompanyComponent,
         UpdateCompanyComponent,
     ],
@@ -33,9 +35,9 @@ import {MatFormFieldModule, MatInputModule} from '@angular/material';
         CustomMaterialModule,
         AppRoutingModule,
         HttpClientModule,
-        FormsModule,
+        ReactiveFormsModule,
     ],
-    providers: [],
+    providers: [ CompanyService ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
