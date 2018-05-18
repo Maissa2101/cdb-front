@@ -6,7 +6,7 @@ import {Company} from './company.model';
 @Injectable()
 export class CompanyService {
 
-    private baseUrl = '';
+    private baseUrl = 'http://10.0.1.94:8080/cdb-webservice/';
 
     constructor(private http: HttpClient) {
     }
