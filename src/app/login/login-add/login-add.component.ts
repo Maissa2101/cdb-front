@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../user.model";
 import {ActivatedRoute} from "@angular/router";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-login-add',
@@ -13,18 +14,32 @@ export class LoginAddComponent implements OnInit {
     user: User;
     userForm:  FormGroup;
 
-    constructor(private activatedRoutes: ActivatedRoute,private fb: FormBuilder) { }
+    constructor(private userService: UserService,private activatedRoutes: ActivatedRoute,private fb: FormBuilder) { }
 
-    onClickEnter() {
-
+    onClickAdd() {
+      this.addUser();
     }
 
     createForm(){
         this.userForm = this.fb.group({
-            user: [new FormControl(),Validators.required],
+            name: [new FormControl(),Validators.required],
             passWord: [new FormControl(),Validators.required],
+            passWord2: [new FormControl(),Validators.],
         });
     }
+
+    addUser(){
+        if(this.userForm.valid) {
+
+            this.user.name = this.userForm.get('name').value;
+            this.user.passWord = this.userForm.get('passWord').value;
+
+            this.userService.addUser(this.user).subscribe(user => this.user = user,
+                                                          error => console.error('erreur ajout user', error)
+            );
+        }
+        }
+
 
     ngOnInit() {
         this.user = new User();

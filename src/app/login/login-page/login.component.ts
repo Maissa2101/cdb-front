@@ -16,9 +16,6 @@ export class LoginComponent implements OnInit {
 
     constructor(private activatedRoutes: ActivatedRoute,private fb: FormBuilder) { }
 
-    onClickEnter() {
-
-    }
 
     createForm(){
         this.userForm = this.fb.group({

@@ -7,7 +7,7 @@
     <form [formGroup]="userForm">
       <div class="form-group">
         <label class="center-block">User
-          <input class="form-control" formControlName="user">
+          <input class="form-control" formControlName="name">
         </label>
       </div>
     </form>
@@ -27,8 +27,7 @@
         </div>
       </form>
 
-
-      <button >Retour</button>
+      <button routerLink="/login/">Retour</button>
       <button>Ajout</button>
 
     </form>
