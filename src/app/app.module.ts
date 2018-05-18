@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {MatFormFieldModule, MatInputModule} from '@angular/material';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import {MatFormFieldModule, MatInputModule} from '@angular/material';
         CompanyDetailsComponent,
         CreateCompanyComponent,
         UpdateCompanyComponent,
+        LoginComponent,
     ],
     imports: [
         BrowserModule,
