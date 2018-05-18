@@ -1,3 +1,24 @@
-<p>
-  create-company works!
-</p>
+<div class="formAdd">
+  <form (ngSubmit)="onSubmit()" [formGroup]="companyGroup" #recipeForm="ngForm">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput id="name" formControlName="name" name="name" placeholder="Name">
+        <mat-hint>Company's name</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Logo</mat-label>
+        <input matInput id="logo" formControlName="logo" name="logo" placeholder="URL">
+        <mat-hint>Company's logo</mat-hint>
+      </mat-form-field>
+    </p>
+    <button mat-raised-button type="submit" [disabled]="companyGroup.invalid">
+      Submit
+    </button>
+    <button mat-raised-button>
+      <a href="#" routerLink="/recipes">Go back</a>
+    </button>
+  </form>
+</div>
