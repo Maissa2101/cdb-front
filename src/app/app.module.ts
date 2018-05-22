@@ -15,7 +15,7 @@ import {CompaniesComponent} from './company/companies/companies.component';
 import {CompanyDetailsComponent} from './company/company-details/company-details.component';
 import {UpdateCompanyComponent} from './company/update-company/update-company.component';
 import {CompanyService} from './company/company.service';
-import {MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatFormFieldModule, MatInputModule, MatPaginatorIntl, MatTableModule} from '@angular/material';
 
 
 @NgModule({
