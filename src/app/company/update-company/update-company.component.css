@@ -1,11 +1,20 @@
 .formUpdate {
   display: flex;
   margin: auto;
-  justify-content: center;
+  margin-top: 150px;
+  justify-content: center
 }
 
 button {
   margin: 10px;
+}
+
+mat-form-field {
+  margin: 10px;
+}
+
+h3 {
+    margin-bottom: 20px;
 }
 
 a {
