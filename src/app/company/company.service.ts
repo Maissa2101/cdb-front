@@ -6,7 +6,7 @@ import {Company} from './company.model';
 @Injectable()
 export class CompanyService {
 
-    private baseUrl = 'http://10.0.1.94:8080/cdb-webservice/';
+    private baseUrl = 'http://10.0.1.94:8080/cdb-webservice';
 
     constructor(private http: HttpClient) {
     }
@@ -33,7 +33,7 @@ export class CompanyService {
         });
     }
 
-    updateCompany(company: Company): Observable<any> {
-        return this.http.patch(`${this.baseUrl}/companies`, company);
+    updateCompany(company: Company): Observable<Company> {
+        return this.http.patch<Company>(`${this.baseUrl}/companies`, company);
     }
 }
