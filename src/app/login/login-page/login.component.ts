@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../user.model";
 import {UserService} from "../user.service";
 
@@ -16,8 +16,7 @@ export class LoginComponent implements OnInit {
     user: User;
     userForm:  FormGroup;
 
-    constructor(private activatedRoutes: ActivatedRoute,private fb: FormBuilder,private userService: UserService) { }
-
+    constructor(private router: Router,private activatedRoutes: ActivatedRoute,private fb: FormBuilder,private userService: UserService) { }
 
     createForm(){
         this.userForm = this.fb.group({
@@ -25,36 +24,26 @@ export class LoginComponent implements OnInit {
             passWord: ["",Validators.required]
         });
     }
-
-
     onSubmit(){
 
         this.userService.signIn(this.user);
         this.isAuthStatus = true;
-        console.log('user connected')
-
+        console.log('user connected');
     }
 
     onClickSignOut(){
 
         this.userService.signOut(this.user);
         this.isAuthStatus = false;
-        console.log('user disconnected')
+        console.log('user disconnected');
     }
 
     onClickSignUp(){
-        console.log('sign up page')
+        console.log('sign up page');
+        this.router.navigate(['loginAdd']);      }
 
-    }
-
-
-  ngOnInit() {
+    ngOnInit() {
       this.user = new User();
       this.createForm();
-
-  }
-
-
-
-
+    }
 }

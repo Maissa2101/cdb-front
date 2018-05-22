@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {User} from "../user.model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../user.service";
+
 
 @Component({
   selector: 'app-login-add',
@@ -11,39 +12,52 @@ import {UserService} from "../user.service";
 })
 export class LoginAddComponent implements OnInit {
 
-    user: User;
+    user : User;
     userForm:  FormGroup;
+    passwordRegex: any = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$';
+    nameRegex: any = '[a-zA-Z0-9]+';
 
-    constructor(private userService: UserService,private activatedRoutes: ActivatedRoute,private fb: FormBuilder) { }
-
-    onClickAdd() {
-      this.addUser();
-    }
+    constructor(private router: Router,private activatedRoutes: ActivatedRoute,private fb: FormBuilder,private userService: UserService) { }
 
     createForm(){
         this.userForm = this.fb.group({
-            name: [new FormControl(),Validators.required],
-            passWord: [new FormControl(),Validators.required],
-            passWord2: [new FormControl(),Validators.required],
+
+            user: ["",      [Validators.required,
+                             Validators.minLength(5),
+                             Validators.maxLength(20),
+                             Validators.pattern(this.nameRegex)]
+                  ],
+
+            password: ["",   [Validators.required,
+                              Validators.minLength(5),
+                              Validators.maxLength(20),
+                              Validators.pattern(this.passwordRegex)]],
+
+            password2:["",   [Validators.required,
+                              Validators.pattern(this.passwordRegex)]]
         });
     }
 
+    onSubmit(){
+        if(this.userForm.controls.password.value == this.userForm.controls.password2.value ){
 
+            //create user
+        console.log('user created');
+        this.userService.signIn(this.user);
+        console.log('user connected');
+        this.router.navigate(['comapanies']);   }
 
-    addUser(){
-        if(this.userForm.valid) {
+        else{
+        console.log('not the sames passwords');}
+    }
 
-            this.user.name = this.userForm.get('name').value;
-            this.user.passWord = this.userForm.get('passWord').value;
-
-
-        }
-        }
-
+    onClickGoback(){
+        this.router.navigate(['login']);
+        console.log('go back');
+    }
 
     ngOnInit() {
         this.user = new User();
         this.createForm();
     }
-
 }
