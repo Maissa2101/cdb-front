@@ -33,7 +33,7 @@ export class CompanyService {
         });
     }
 
-    updateCompany(company: Company): Observable<any> {
-        return this.http.patch(`${this.baseUrl}/companies`, company);
+    updateCompany(company: Company): Observable<Company> {
+        return this.http.patch<Company>(`${this.baseUrl}/companies`, company);
     }
 }

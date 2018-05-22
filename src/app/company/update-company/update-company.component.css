@@ -1,0 +1,19 @@
+.formUpdate {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
+mat-form-field {
+  margin: 10px;
+}
+
+button {
+  margin: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}

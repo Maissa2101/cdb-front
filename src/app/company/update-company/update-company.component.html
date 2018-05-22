@@ -1,3 +1,24 @@
-<p>
-  update-company works!
-</p>
+<div class="formUpdate">
+  <form (ngSubmit)="onSubmit()" [formGroup]="companyForm">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput id="name" formControlName="name" name="name" value="{{company?.name}}">
+        <mat-hint>Company's name</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Logo</mat-label>
+        <input matInput id="logo" formControlName="logo" name="logo" value="{{company?.logo}}">
+        <mat-hint>Company's logo</mat-hint>
+      </mat-form-field>
+    </p>
+    <button mat-raised-button type="submit" [disabled]="companyForm.invalid">
+      Submit
+    </button>
+    <button mat-raised-button>
+      <a href="#" routerLink="/companies">Go back</a>
+    </button>
+  </form>
+</div>

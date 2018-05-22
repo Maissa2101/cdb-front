@@ -13,15 +13,15 @@ const routes: Routes = [
         pathMatch: 'full'
     },
     {
+        path: 'companies/add',
+        component: CreateCompanyComponent,
+    },
+    {
         path: 'companies/:id',
         component: CompanyDetailsComponent,
     },
     {
-        path: 'companies',
-        component: CreateCompanyComponent,
-    },
-    {
-        path: 'companies',
+        path: 'companies/:id/update',
         component: UpdateCompanyComponent,
     },
     {
