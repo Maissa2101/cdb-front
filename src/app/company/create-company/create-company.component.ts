@@ -28,9 +28,7 @@ export class CreateCompanyComponent {
   createForm() {
     this.companyGroup = this.formBuilder.group({
       name: ['', Validators.required],
-      logo: '',
+      logo: ['', Validators.pattern(/(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/)]
     });
   }
 }
-
-
