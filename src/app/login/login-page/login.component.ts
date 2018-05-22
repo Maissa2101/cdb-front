@@ -11,38 +11,35 @@ import {UserService} from "../user.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    isAuthStatus = true;
 
+    isAuthStatus = false;
     user: User;
     userForm:  FormGroup;
-
 
     constructor(private activatedRoutes: ActivatedRoute,private fb: FormBuilder,private userService: UserService) { }
 
 
     createForm(){
         this.userForm = this.fb.group({
-            user: [new FormControl(),Validators.required],
-            passWord: [new FormControl(),Validators.required]
+            user: ["",Validators.required],
+            passWord: ["",Validators.required]
         });
     }
 
 
     onSubmit(){
-        this.userService.signIn(this.user);
-        this.isAuthStatus = this.userService.isAuth;
-        console.log('user connected')
 
+        this.userService.signIn(this.user);
+        this.isAuthStatus = true;
+        console.log('user connected')
 
     }
 
     onClickSignOut(){
 
         this.userService.signOut(this.user);
-        this.isAuthStatus = this.userService.isAuth;
+        this.isAuthStatus = false;
         console.log('user disconnected')
-
-
     }
 
     onClickSignUp(){

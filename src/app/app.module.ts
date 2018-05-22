@@ -12,10 +12,11 @@ import {UpdateCompanyComponent} from './company/update-company/update-company.co
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CustomMaterialModule} from './custom-material/custom-material.module';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
-import {MatFormFieldModule, MatInputModule} from '@angular/material';
-import { LoginComponent } from './login/login.component';
+import {ReactiveFormsModule ,FormsModule} from '@angular/forms';
+import { LoginComponent } from './login/login-page/login.component';
+import {CompanyService} from "./company/company.service";
+import { LoginAddComponent } from './login/login-add/login-add.component';
+import {UserService} from "./login/user.service";
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import { LoginComponent } from './login/login.component';
         CreateCompanyComponent,
         UpdateCompanyComponent,
         LoginComponent,
+        LoginAddComponent,
     ],
     imports: [
         BrowserModule,
@@ -35,9 +37,12 @@ import { LoginComponent } from './login/login.component';
         CustomMaterialModule,
         AppRoutingModule,
         HttpClientModule,
-        FormsModule,
+        ReactiveFormsModule,
+
     ],
-    providers: [],
+
+
+    providers: [CompanyService,UserService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
