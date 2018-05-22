@@ -1,10 +1,11 @@
 <div class="formAdd">
   <form (ngSubmit)="onSubmit()" [formGroup]="companyGroup">
+    <h2>New Company:</h2>
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
         <input matInput id="name" formControlName="name" name="name" placeholder="Name">
-        <mat-hint>Company's name</mat-hint>
+        <mat-hint>Name of the company</mat-hint>
       </mat-form-field>
     </p>
     <p>

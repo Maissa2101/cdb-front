@@ -40,7 +40,7 @@ export class UpdateCompanyComponent implements OnInit {
     createForm() {
         this.companyForm = this.fb.group({
             name: '',
-            logo: ['', Validators.pattern(/(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/)]
+            logo: ['', Validators.pattern(/(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/)]
         });
     }
 
