@@ -1,33 +1,25 @@
 
+    <div class="formLogin">
+      <form (ngSubmit)="onClickSigIn()" [formGroup]="userForm">
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>User</mat-label>
+            <input matInput class="form-control" formControlName="user" >
+            <mat-hint>user</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>passWord</mat-label>
+            <input matInput class="form-control" formControlName="passWord" >
+            <mat-hint>passWord</mat-hint>
+          </mat-form-field>
+        </p>
 
-    <div>
-     <h2>Login</h2>
-    <div>
-
-      <form [formGroup]="userForm">
-        <div class="form-group">
-          <label class="center-block">User
-            <input class="form-control" formControlName="user">
-          </label>
-        </div>
-      </form>
-
-      <form [formGroup]="userForm">
-        <div class="form-group">
-          <label class="center-block">PassWord
-            <input class="form-control" formControlName="passWord">
-          </label>
-        </div>
-
-        <button >Enter</button>
-        <button>t pa encore inscrit?</button>
-
+        <button  *ngIf="!isAuth"  mat-raised-button type="submit" [disabled]="userForm.invalid">
+          Se connecter
+        </button>
+        <button (click)="onClickSignUp()">inscription </button>
       </form>
     </div>
-  </div>
-
-
-
-
-
 

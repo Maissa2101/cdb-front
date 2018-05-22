@@ -24,9 +24,11 @@ export class LoginAddComponent implements OnInit {
         this.userForm = this.fb.group({
             name: [new FormControl(),Validators.required],
             passWord: [new FormControl(),Validators.required],
-            passWord2: [new FormControl(),Validators.],
+            passWord2: [new FormControl(),Validators.required],
         });
     }
+
+
 
     addUser(){
         if(this.userForm.valid) {
@@ -34,9 +36,7 @@ export class LoginAddComponent implements OnInit {
             this.user.name = this.userForm.get('name').value;
             this.user.passWord = this.userForm.get('passWord').value;
 
-            this.userService.addUser(this.user).subscribe(user => this.user = user,
-                                                          error => console.error('erreur ajout user', error)
-            );
+
         }
         }
 

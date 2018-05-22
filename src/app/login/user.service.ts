@@ -6,12 +6,20 @@ import {User} from "../login/user.model";
 @Injectable()
 export class UserService {
 
+    isAuth = false;
+    isAdmin = false;
+
     private baseUrl = 'http://10.0.1.94:8080/cdb-webservice/';
 
     constructor(private http: HttpClient) {
     }
-    addUser(user: User): Observable<User> {
-        return this.http.post<User>(`${this.baseUrl}/companies`, user);
+
+    signIn(User){
+        this.isAuth = true;
+    }
+
+    signOut(User){
+        this.isAuth = false;
     }
 
 }
