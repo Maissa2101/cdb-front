@@ -38,6 +38,6 @@ export class CompanyService {
     }
 
     search(search: string): Observable<Company[]> {
-      return this.http.get<Company[]>(`${this.baseUrl}/companies/${search}`);
+      return this.http.get<Company[]>(`${this.baseUrl}/companies?search=${search}`);
     }
 }
