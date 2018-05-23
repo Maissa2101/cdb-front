@@ -13,10 +13,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CustomMaterialModule} from './custom-material/custom-material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule ,FormsModule} from '@angular/forms';
-import { LoginComponent } from './login/login-page/login.component';
+import {LoginComponent } from './login/login-page/login.component';
 import {CompanyService} from "./company/company.service";
-import { LoginAddComponent } from './login/login-add/login-add.component';
+import {LoginAddComponent } from './login/login-add/login-add.component';
 import {UserService} from "./login/user.service";
+import {AlertComponent } from './login/alert/alert.component';
+import {AlertService} from "./login/alert.service";
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
     declarations: [
@@ -28,7 +31,9 @@ import {UserService} from "./login/user.service";
         CreateCompanyComponent,
         UpdateCompanyComponent,
         LoginComponent,
+        AlertComponent,
         LoginAddComponent,
+        AlertComponent,
     ],
     imports: [
         BrowserModule,
@@ -38,11 +43,12 @@ import {UserService} from "./login/user.service";
         AppRoutingModule,
         HttpClientModule,
         ReactiveFormsModule,
+        MatProgressSpinnerModule
 
     ],
 
 
-    providers: [CompanyService,UserService],
+    providers: [CompanyService,UserService,AlertService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
