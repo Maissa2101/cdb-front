@@ -1,8 +1,5 @@
 img {
-  margin: 15px;
-  max-width: 150px;
-  max-height: 150px;
-  background-size: cover;
+ font-size: 5rem;
 }
 
 mat-card-title {
@@ -34,4 +31,13 @@ mat-card-title {
   font-size: 10px;
   cursor: pointer;
   margin-top: 5px;
+}
+
+.update {
+  font-size: 2rem;
+}
+
+.material-icons {
+  vertical-align: middle;
+  font-size: 3rem;
 }
