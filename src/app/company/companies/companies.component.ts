@@ -1,7 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {CompanyService} from '../company.service';
 import {Company} from '../company.model';
 import {InputMetadataWalker} from 'codelyzer/noInputRenameRule';
+import { MatPaginator, MatSort } from '@angular/material';
+import {merge, Observable, of as observableOf} from 'rxjs';
+import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-companies',
@@ -9,21 +13,62 @@ import {InputMetadataWalker} from 'codelyzer/noInputRenameRule';
   styleUrls: ['./companies.component.css']
 })
 export class CompaniesComponent implements OnInit {
+  displayedColumns = ['id', 'name', 'logo'];
+  companies: Company[] = [];
 
-  companies: Company[];
+  resultsLength = 0;
+  isLoadingResults = true;
+  isRateLimitReached = false;
 
-  @Input()
-  wordToSearch: string;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private companyService: CompanyService) {
-  }
+  constructor(private companyService: CompanyService) {}
 
   ngOnInit() {
-    this.companyService.getCompanies()
-      .subscribe(
-        companies => this.companies = companies,
-        error => console.error('Error in get list companies', error)
-      );
+  }
+
+  ngAfterViewInit() {
+    // If the user changes the sort order, reset back to the first page.
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+    this.paginator.length = 100;
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          let sortName: string;
+          if (this.sort.active === "name") {
+            sortName = "ca_name";
+          } else {
+            sortName = "ca_id";
+          }
+          return this.companyService!.getCompaniesPage(
+            sortName, this.sort.direction, this.paginator.pageIndex, this.paginator.length);
+        }),
+        map(companies => {
+          // Flip flag to show that loading has finished.
+          this.isLoadingResults = false;
+          this.isRateLimitReached = false;
+          this.resultsLength = companies.length;
+
+          return companies;
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          this.isRateLimitReached = true;
+          return observableOf([]);
+        })
+      ).subscribe(companies => this.companies = companies);
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.companies.filter(company => company.name.search(filterValue) !== -1)
+    if (this.paginator) {
+      this.paginator.firstPage();
+    }
   }
 
   delete(company: Company) {
@@ -34,14 +79,6 @@ export class CompaniesComponent implements OnInit {
   deleteMultiple(companies: Company[]) {
     companies.forEach(company =>
       this.delete(company));
-  }
-
-  search(search: string) {
-    this.wordToSearch = search;
-    this.companyService.search(this.wordToSearch).subscribe(
-      companies => this.companies.filter(company => company.name.search(this.wordToSearch) !== -1),
-      error => console.error('Error in get list companies after search', error)
-    );
   }
 
 }
