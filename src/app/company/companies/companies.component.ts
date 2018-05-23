@@ -1,35 +1,47 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CompanyService} from '../company.service';
 import {Company} from '../company.model';
+import {InputMetadataWalker} from 'codelyzer/noInputRenameRule';
 
 @Component({
-    selector: 'app-companies',
-    templateUrl: './companies.component.html',
-    styleUrls: ['./companies.component.css']
+  selector: 'app-companies',
+  templateUrl: './companies.component.html',
+  styleUrls: ['./companies.component.css']
 })
 export class CompaniesComponent implements OnInit {
 
-    companies: Company[];
+  companies: Company[];
 
-    constructor(private companyService: CompanyService) {
-    }
+  @Input()
+  wordToSearch: string;
 
-    ngOnInit() {
-        this.companyService.getCompanies()
-            .subscribe(
-                companies => this.companies = companies,
-                error => console.error('Error in get list companies', error)
-            );
-    }
+  constructor(private companyService: CompanyService) {
+  }
 
-    delete(company: Company) {
-        const i = this.companies.indexOf(company);
-        this.companies.splice(i, 1);
-    }
+  ngOnInit() {
+    this.companyService.getCompanies()
+      .subscribe(
+        companies => this.companies = companies,
+        error => console.error('Error in get list companies', error)
+      );
+  }
 
-    deleteMultiple(companies: Company[]) {
-        companies.forEach(company =>
-            this.delete(company));
-    }
+  delete(company: Company) {
+    const i = this.companies.indexOf(company);
+    this.companies.splice(i, 1);
+  }
+
+  deleteMultiple(companies: Company[]) {
+    companies.forEach(company =>
+      this.delete(company));
+  }
+
+  search(search: string) {
+    this.wordToSearch = search;
+    this.companyService.search(this.wordToSearch).subscribe(
+      companies => this.companies.filter(company => company.name.search(this.wordToSearch) !== -1),
+      error => console.error('Error in get list companies after search', error)
+    );
+  }
 
 }
