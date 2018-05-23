@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Company} from './company.model';
 
@@ -39,5 +39,10 @@ export class CompanyService {
 
     search(search: string): Observable<Company[]> {
       return this.http.get<Company[]>(`${this.baseUrl}/companies?search=${search}`);
+    }
+
+    getCompaniesPage(sort: string, order: string, page: number, size: number): Observable<Company[]> {
+      const requestUrl = `${this.baseUrl}/companies?page-number=${page}&page-size=${size}&order=${sort}&direction=${order}`;
+      return this.http.get<Company[]>(requestUrl);
     }
 }
