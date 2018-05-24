@@ -53,7 +53,7 @@ export class LoginAddComponent implements OnInit {
       if(this.userForm.controls.password.value == this.userForm.controls.password2.value ){
           this.user.login = this.userForm.controls.user.value;
           this.user.password = this.userForm.controls.password.value;
-          this.userService.createUser(this.user).subscribe(() => console.error('user created'),
+          this.userService.createUser(this.user).subscribe(() => console.info('user created'),
                                                           error => console.error('problem in add user', error));
           this.router.navigate(['login']);
           this.alertService.success('Registration successful', true)

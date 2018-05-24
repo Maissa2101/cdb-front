@@ -11,7 +11,7 @@ import {CreateCompanyComponent} from './company/create-company/create-company.co
 import {UpdateCompanyComponent} from './company/update-company/update-company.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CustomMaterialModule} from './custom-material/custom-material.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule ,FormsModule} from '@angular/forms';
 import {LoginComponent } from './login/login-page/login.component';
 import {CompanyService} from "./company/company.service";
@@ -20,6 +20,9 @@ import {UserService} from "./login/user.service";
 import {AlertComponent } from './login/alert/alert.component';
 import {AlertService} from "./login/alert.service";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {AuthenticationService} from "./login/authentificationService.service";
+import {AuthGuard} from "./login/auth.guard";
+import {JwtInterceptor} from "./login/jwt.interceptor";
 
 @NgModule({
     declarations: [
@@ -48,7 +51,19 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     ],
 
 
-    providers: [CompanyService,UserService,AlertService],
+    providers: [CompanyService,
+                UserService,
+                AlertService,
+                AuthenticationService,
+                AuthGuard,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: JwtInterceptor,
+            multi: true
+        },
+
+
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

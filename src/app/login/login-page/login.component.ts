@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../user.model";
 import {UserService} from "../user.service";
 import {AlertService} from "../alert.service";
+import {AuthenticationService} from "../authentificationService.service";
 
 
 @Component({
@@ -17,13 +18,15 @@ export class LoginComponent implements OnInit {
     user: User;
     userForm:  FormGroup;
     loading =  false;
+    returnUrl: string;
 
     constructor(
         private router: Router,
         private activatedRoutes: ActivatedRoute,
         private fb: FormBuilder,
         private userService: UserService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private  authentificationService: AuthenticationService
     ) { }
 
     ngOnInit() {
@@ -34,28 +37,30 @@ export class LoginComponent implements OnInit {
     createForm(){
         this.userForm = this.fb.group({
             user: ["",Validators.required],
-            passWord: ["",Validators.required]
+            password: ["",Validators.required]
         });
     }
 
     onSubmit(){
-        this.alertService.success('Registration successful', true);
-
         this.loading = true;
-        this.isAuthStatus = true;
-        console.log('user connected');
+        this.user.login = this.userForm.controls.user.value;
+        this.user.password = this.userForm.controls.password.value;
+
+        this.authentificationService.login(this.user.login,this.user.password);
+
         this.loading = false;
     }
 
     onClickSignOut(){
-
         this.isAuthStatus = false;
-        console.log('user disconnected');
+        this.authentificationService.logout().subscribe(user => {console.info('user disconnected')},
+            error => console.error('disconnection problem', error));
+        ;
     }
 
     onClickSignUp(){
         console.log('sign up page');
-        this.router.navigate(['loginAdd']);      }
-
+        this.router.navigate(['loginAdd']);
+    }
 
 }
