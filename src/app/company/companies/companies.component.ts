@@ -18,7 +18,7 @@ export class CompaniesComponent implements OnInit {
   selection = new SelectionModel<Company>(true, []);
   companies : Company[] = [];
 
-  isLoadingResults = false;
+  isDataGettingProblem = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -29,14 +29,15 @@ export class CompaniesComponent implements OnInit {
   ngOnInit() {
     this.companyService.getCompanies()
       .subscribe(
-        companies => this.companies = companies,
-        error => console.error('Error in get list companies', error)
-      );
-    setTimeout(() => {
-      this.dataSource = new MatTableDataSource(this.companies);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }, 0);
+        companies => {
+          this.companies = companies;
+          this.dataSource = new MatTableDataSource(this.companies);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        },
+        error =>  {
+          this.isDataGettingProblem = true;
+        } );
   }
 
   applyFilter(filterValue: string) {
