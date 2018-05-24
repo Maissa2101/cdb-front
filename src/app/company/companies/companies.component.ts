@@ -2,7 +2,7 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {CompanyService} from '../company.service';
 import {Company} from '../company.model';
 import {InputMetadataWalker} from 'codelyzer/noInputRenameRule';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar } from '@angular/material';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -23,7 +23,7 @@ export class CompaniesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private companyService: CompanyService) {
+  constructor(private companyService: CompanyService, public snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -37,13 +37,13 @@ export class CompaniesComponent implements OnInit {
         },
         error =>  {
           this.isDataGettingProblem = true;
+          this.snackBar.open("Can't reach the database. Press 'F5' to refresh.", "Close", {
+            panelClass: 'snackbar-error',
+            duration: 2500,});
         } );
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filterPredicate = (data: Company, filter: string) => data.name.indexOf(filter) != -1;
-    filterValue = filterValue.trim();
-    filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();

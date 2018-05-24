@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CompanyService} from '../company.service';
 import {Company} from '../company.model';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-create-company',
@@ -13,7 +14,7 @@ export class CreateCompanyComponent {
 
   company = new Company();
 
-  constructor(private companyService: CompanyService, private formBuilder: FormBuilder) {
+  constructor(private companyService: CompanyService, private formBuilder: FormBuilder, public snackBar: MatSnackBar) {
     this.createForm();
   }
 
@@ -21,8 +22,19 @@ export class CreateCompanyComponent {
     this.company.name = this.companyGroup.controls.name.value;
     this.company.logo = this.companyGroup.controls.logo.value;
     this.companyService.addCompany(this.company)
-      .subscribe(() => console.log('new company added'),
-        error => console.error('Problem in add new company', error));
+      .subscribe(() => {
+        console.log('new company added');
+        this.snackBar.open("New company added to database.", "Close", {
+          panelClass:'snackbar-info',
+          duration: 2500,
+        });
+      }, error => {
+        console.error('Problem in add new company', error);
+        this.snackBar.open("Problem in adding company, please try again.", "Close", {
+          panelClass: 'snackbar-error',
+          duration: 2500,
+        });
+      } );
   }
 
   createForm() {
