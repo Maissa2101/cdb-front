@@ -12,9 +12,6 @@ export class CompaniesComponent implements OnInit {
 
   companies: Company[];
 
-  @Input()
-  wordToSearch: string;
-
   constructor(private companyService: CompanyService) {
   }
 
@@ -36,12 +33,10 @@ export class CompaniesComponent implements OnInit {
       this.delete(company));
   }
 
-  search(search: string) {
-    this.wordToSearch = search;
-    this.companyService.search(this.wordToSearch).subscribe(
-      companies => this.companies.filter(company => company.name.search(this.wordToSearch) !== -1),
-      error => console.error('Error in get list companies after search', error)
-    );
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.companies.filter(company => company.name.search(filterValue) !== -1);
   }
-
 }
+

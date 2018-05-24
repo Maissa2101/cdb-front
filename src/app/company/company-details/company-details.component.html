@@ -20,9 +20,9 @@
       <div class="container scroll">
         <table class="table isSearch" cellspacing="0" mat-tabe>
           <thead>
-          <tr class="table-heads ">
+          <tr class="table-heads" ng-repeat="company in companies | orderBy:sortType:sortReverse">
             <th class="head-item mbr-fonts-style display-6">ID</th>
-            <th class="head-item mbr-fonts-style display-6">NAME</th>
+            <th class="head-item mbr-fonts-style display-6" ng-click="sortType = 'name'">NAME</th>
             <th class="head-item mbr-fonts-style display-6">LOGO</th>
           </tr>
           </thead>
