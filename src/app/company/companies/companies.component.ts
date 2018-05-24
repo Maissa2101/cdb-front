@@ -15,8 +15,10 @@ import { SelectionModel } from '@angular/cdk/collections';
 export class CompaniesComponent implements OnInit {
   displayedColumns = ['select', 'id', 'name', 'logo'];
   dataSource : MatTableDataSource<Company>;
-  companies : Company[] = [];
   selection = new SelectionModel<Company>(true, []);
+  companies : Company[] = [];
+
+  isLoadingResults = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -30,15 +32,17 @@ export class CompaniesComponent implements OnInit {
         companies => this.companies = companies,
         error => console.error('Error in get list companies', error)
       );
-    setTimeout(() => {this.dataSource = new MatTableDataSource(this.companies);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    }, 2000);
+    setTimeout(() => {
+      this.dataSource = new MatTableDataSource(this.companies);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }, 0);
   }
 
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filterPredicate = (data: Company, filter: string) => data.name.indexOf(filter) != -1;
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -51,7 +55,6 @@ export class CompaniesComponent implements OnInit {
     return numSelected === numRows;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected() ?
         this.selection.clear() :
