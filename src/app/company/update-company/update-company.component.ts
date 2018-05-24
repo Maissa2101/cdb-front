@@ -40,7 +40,7 @@ export class UpdateCompanyComponent implements OnInit {
       this.companyService.updateCompany(this.company)
         .subscribe(() => { console.log('company updated');
           this.snackBar.open("The company has been updated.", "Close", {
-            panelClass: 'snackbar-info',
+            panelClass: 'snackbar-ok',
             duration: 2500});
         }, error => { console.error('Problem in update company', error);
           this.snackBar.open("Can't update the company. Please try again.", "Close", {

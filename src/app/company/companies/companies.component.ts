@@ -36,7 +36,7 @@ export class CompaniesComponent implements OnInit {
           this.dataSource.sort = this.sort;
         },
         error =>  {
-          this.isDataGettingProblem = true;
+          console.error('Problem in getting the company', error);
           this.snackBar.open("Can't reach the database. Press 'F5' to refresh.", "Close", {
             panelClass: 'snackbar-error',
             duration: 2500,});

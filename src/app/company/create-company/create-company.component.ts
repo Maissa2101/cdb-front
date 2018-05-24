@@ -25,7 +25,7 @@ export class CreateCompanyComponent {
       .subscribe(() => {
         console.log('new company added');
         this.snackBar.open("New company added to database.", "Close", {
-          panelClass:'snackbar-info',
+          panelClass:'snackbar-ok',
           duration: 2500,
         });
       }, error => {

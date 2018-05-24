@@ -1,3 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+.snackbar-error {
+  background-color: #ca433b;
+}
+
+.snackbar-ok {
+  background-color: #77a248;
+}
+
+.snackbar-info {
+  background-color: #6babe0;
+}
