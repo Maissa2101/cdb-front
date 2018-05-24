@@ -14,7 +14,7 @@ export class CompanyDetailsComponent implements OnInit {
   id: number;
   company: Company;
 
-  constructor(private companyService: CompanyService, private route: ActivatedRoute, public snackbar: MatSnackBar) {
+  constructor(private companyService: CompanyService, private route: ActivatedRoute, public snackBar: MatSnackBar) {
       this.id = +this.route.snapshot.paramMap.get('id');
   }
 
