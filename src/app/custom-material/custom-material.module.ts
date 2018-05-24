@@ -16,7 +16,7 @@ import {MatButtonModule, MatCardModule, MatListModule, MatToolbarModule, MatForm
         MatPaginatorModule,
         MatSortModule,
         MatProgressSpinnerModule,
-        MatCheckboxModule
+        MatCheckboxModule,
     ],
     exports: [
         MatToolbarModule,

@@ -40,9 +40,4 @@ export class CompanyService {
     search(search: string): Observable<Company[]> {
       return this.http.get<Company[]>(`${this.baseUrl}/companies/${search}`);
     }
-
-    getCompaniesPage(sort: string, order: string, page: number, size: number): Observable<Company[]> {
-      const requestUrl = `${this.baseUrl}/companies?page-number=${page}&page-size=${size}&order=${sort}&direction=${order}`;
-      return this.http.get<Company[]>(requestUrl);
-    }
 }
