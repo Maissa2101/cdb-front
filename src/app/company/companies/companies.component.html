@@ -75,13 +75,11 @@
           <ng-template #noImage> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAJFBMVEXu7u7W1tbi4uLp6enY2Njc3Nzs7Ozm5ube3t7j4+Px8fHT09N+C66kAAACFElEQVR4nO3c0XKiMABA0QJREf7/f7crahCxjTw0JJ7T6YOx03IHrRCDX18AAAAAAAAAAAAAAAAAAPCJurY9t0m+f6zLvbVbtGOTbGxzb+0WbXpg0xRZeH6n8Jx7a7eofx8qVLh/ChXu31R4iEIMCrPhwgtDN9xuD+14b+zjaBdKL4wDfdyHfRytqXB62Ibvr1oL69+HCouj8Erhjn1M4XA3O1Dt4+ix8MKmGe+ameVoyYVpFO6Swo8s7E5J9vImx3phWL89FR6S3uoY2+GXP/1HNuzDQ9LP7uZtnGthWO6114XHtMLdPGmf9uFK6n2ojsJpAuOnjU59HmYuu5mOS8/dXR8DD3H0NDsu7dIcM5fdvJiJuoiziRWcW8SBWs+e4oDC4mwoLP0/za+Fxz4k2cuyhg2FJb7iv3q1iKPVFYbLd52Fw+or/lB8YR/X5822P8zW9BVemEqhwiwUKlSY30cWPk1E1TfX9qq05MK1lXvhxcq9IgsfVu7FbazpyPvpDPgSVOfZ0wec4ytUqPDPKbyqsrCy2cQ3Vu49FI4PmrGJh7O7Klys0Qsr29+sFp6GB1/D7L6dFb7xwHsoXP46hRkoVLigMAOFChcUZqBQ4YLCDBQqXFCYgcIKCt/+vLZjvN5iXBbucSaqS/3Ivf8fujdNq57i0NP1aT/dl8sbV5jt5GI0AAAAAAAAAAAAAAAAAACK9g8n9CXxUcUZDQAAAABJRU5ErkJggg==" style="height: 4rem;"></ng-template>
         </td>
       </ng-container>
-
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  </div>
-
-  <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
+      </table>
+    </div>
+    <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
   </div>
 </div>
 </section>

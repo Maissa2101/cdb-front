@@ -13,12 +13,11 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./companies.component.css']
 })
 export class CompaniesComponent implements OnInit {
+
   displayedColumns = ['select', 'id', 'name', 'logo'];
   dataSource : MatTableDataSource<Company>;
   selection = new SelectionModel<Company>(true, []);
   companies : Company[] = [];
-
-  isDataGettingProblem = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
