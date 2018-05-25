@@ -16,9 +16,9 @@ import {Router, RouterModule} from '@angular/router';
 export class CompaniesComponent implements OnInit {
 
   displayedColumns = ['select', 'id', 'name', 'logo'];
-  dataSource : MatTableDataSource<Company>;
+  dataSource: MatTableDataSource<Company>;
   selection = new SelectionModel<Company>(true, []);
-  companies : Company[] = [];
+  companies: Company[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -72,8 +72,8 @@ export class CompaniesComponent implements OnInit {
       this.delete(company));
   }
 
+
   selectRow(id) {
     this.router.navigate([`/companies/` + id]);
   }
-
 }

@@ -48,3 +48,12 @@ th {
   margin-bottom: 8px;
   margin-top: 2px;
 }
+
+.highlight {
+  background: #42A948; /* green */
+}
+
+.table tr.active td {
+  background-color:#123456 !important;
+  color: white;
+}

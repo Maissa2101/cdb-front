@@ -1,19 +1,42 @@
-<mat-card class="center" *ngIf="company">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{ company.name }}</mat-card-title>
-  </mat-card-header>
+<section class="section-table cid-qSGshc4hgR" id="table1-4">
+  <div class="container container-table">
+    <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-1">
+      Companies</h2>
+    <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-6">Company with id : {{company?.id}}</h3>
 
-  <div class="alignement">
-    <img mat-card-image [src]="company.logo" alt="Logo of the company">
-  </div>
-
-
-  <mat-card-actions>
-
-    <div>
-      <button class="btn" (click)="delete()"><i class="material-icons">delete</i></button>
+    <div class="container table-info-container">
+      <div class="col-md-6">
+        <div class="mbr-fonts-style display-7">
+          <a class="nav-link link text-black update" href="#" routerLink="/companies/{{ company.id }}/update">
+            <i class="material-icons">update</i>
+            Edit</a>
+        </div>
+      </div>
     </div>
 
-  </mat-card-actions>
-</mat-card>
+
+    <div class="container scroll">
+      <table class="table isSearch" cellspacing="0" mat-tabe>
+        <thead>
+        <tr class="table-heads" ng-repeat="company in companies | orderBy:sortType:sortReverse">
+          <th class="head-item mbr-fonts-style display-6">ID</th>
+          <th class="head-item mbr-fonts-style display-6" ng-click="sortType = 'name'">NAME</th>
+          <th class="head-item mbr-fonts-style display-6">LOGO</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="company">
+        <tr>
+          <td class="body-item mbr-fonts-style display-5">{{ company.id }}</td>
+          <td class="body-item mbr-fonts-style display-5">{{ company.name }}</td>
+          <td style="text-align:center;" class="body-item mbr-fonts-style display-4">
+            <div *ngIf="company.logo;else noImage">
+              <img [src]="company.logo" style="height: 5.5rem;">
+            </div>
+            <ng-template #noImage> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAJFBMVEXu7u7W1tbi4uLp6enY2Njc3Nzs7Ozm5ube3t7j4+Px8fHT09N+C66kAAACFElEQVR4nO3c0XKiMABA0QJREf7/f7crahCxjTw0JJ7T6YOx03IHrRCDX18AAAAAAAAAAAAAAAAAAPCJurY9t0m+f6zLvbVbtGOTbGxzb+0WbXpg0xRZeH6n8Jx7a7eofx8qVLh/ChXu31R4iEIMCrPhwgtDN9xuD+14b+zjaBdKL4wDfdyHfRytqXB62Ibvr1oL69+HCouj8Erhjn1M4XA3O1Dt4+ix8MKmGe+ameVoyYVpFO6Swo8s7E5J9vImx3phWL89FR6S3uoY2+GXP/1HNuzDQ9LP7uZtnGthWO6114XHtMLdPGmf9uFK6n2ojsJpAuOnjU59HmYuu5mOS8/dXR8DD3H0NDsu7dIcM5fdvJiJuoiziRWcW8SBWs+e4oDC4mwoLP0/za+Fxz4k2cuyhg2FJb7iv3q1iKPVFYbLd52Fw+or/lB8YR/X5822P8zW9BVemEqhwiwUKlSY30cWPk1E1TfX9qq05MK1lXvhxcq9IgsfVu7FbazpyPvpDPgSVOfZ0wec4ytUqPDPKbyqsrCy2cQ3Vu49FI4PmrGJh7O7Klys0Qsr29+sFp6GB1/D7L6dFb7xwHsoXP46hRkoVLigMAOFChcUZqBQ4YLCDBQqXFCYgcIKCt/+vLZjvN5iXBbucSaqS/3Ivf8fujdNq57i0NP1aT/dl8sbV5jt5GI0AAAAAAAAAAAAAAAAAACK9g8n9CXxUcUZDQAAAABJRU5ErkJggg==" style="height: 5.5rem;"></ng-template>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
