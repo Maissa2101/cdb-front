@@ -1,12 +1,9 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {CompanyService} from '../company.service';
 import {Company} from '../company.model';
-import {InputMetadataWalker} from 'codelyzer/noInputRenameRule';
 import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar } from '@angular/material';
-import {merge, Observable, of as observableOf} from 'rxjs';
-import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
-import {Router, RouterModule} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-companies',
@@ -19,6 +16,11 @@ export class CompaniesComponent implements OnInit {
   dataSource: MatTableDataSource<Company>;
   selection = new SelectionModel<Company>(true, []);
   companies: Company[] = [];
+
+  @Input()
+  display = false;
+
+  @Output() deleteR = new EventEmitter<Company>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -56,6 +58,11 @@ export class CompaniesComponent implements OnInit {
     return numSelected === numRows;
   }
 
+  isOneSelected() {
+    this.display = true;
+    return true;
+  }
+
   masterToggle() {
     this.isAllSelected() ?
         this.selection.clear() :
@@ -65,11 +72,11 @@ export class CompaniesComponent implements OnInit {
   delete(company: Company) {
     const i = this.companies.indexOf(company);
     this.companies.splice(i, 1);
+    this.companyService.deleteCompany(company.id);
   }
 
-  deleteMultiple(companies: Company[]) {
-    companies.forEach(company =>
-      this.delete(company));
+  deleteMultiple() {
+    this.selection.selected.forEach(company => this.delete(company) );
   }
 
 
