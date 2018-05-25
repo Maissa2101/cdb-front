@@ -19,8 +19,8 @@ export class CompanyService {
         return this.http.get<Company>(`${this.baseUrl}/companies/${id}`);
     }
 
-    addCompany(company: Company): Observable<Company> {
-        return this.http.post<Company>(`${this.baseUrl}/companies`, company);
+    addCompany(company: Company): Observable<any> {
+        return this.http.post(`${this.baseUrl}/companies`, company, {responseType: 'text'});
     }
 
     deleteCompany(id: number): Observable<{}> {
@@ -33,8 +33,8 @@ export class CompanyService {
         });
     }
 
-    updateCompany(company: Company): Observable<Company> {
-        return this.http.patch<Company>(`${this.baseUrl}/companies`, company);
+    updateCompany(company: Company): Observable<any> {
+        return this.http.patch(`${this.baseUrl}/companies`, company, {responseType: 'text'});
     }
 
     search(search: string): Observable<Company[]> {
