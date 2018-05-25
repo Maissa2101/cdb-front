@@ -9,10 +9,5 @@ import {UserService} from "./login/user.service";
 })
 export class AppComponent {
 
-  title = 'Computer Database - Companies';
-  currentUser: User;
-
-    constructor(private userService: UserService) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    }
+    constructor() {}
 }

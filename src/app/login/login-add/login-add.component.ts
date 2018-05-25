@@ -31,20 +31,20 @@ export class LoginAddComponent implements OnInit {
         this.userForm = this.fb.group({
 
             user: ["",      [Validators.required,
-                            // Validators.minLength(5),
+                             Validators.minLength(5),
                              Validators.maxLength(20),
-                           //  Validators.pattern(this.nameRegex)
+                             Validators.pattern(this.nameRegex)
                 ]
                   ],
 
             password: ["",   [Validators.required,
-                            //  Validators.minLength(5),
+                              Validators.minLength(5),
                               Validators.maxLength(20),
-                             // Validators.pattern(this.passwordRegex)
+                              Validators.pattern(this.passwordRegex)
                 ]],
 
             password2:["",   [Validators.required,
-                             // Validators.pattern(this.passwordRegex)
+                              Validators.pattern(this.passwordRegex)
              ]]
         });
     }

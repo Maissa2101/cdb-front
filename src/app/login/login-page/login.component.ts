@@ -6,7 +6,6 @@ import {UserService} from "../user.service";
 import {AlertService} from "../alert.service";
 import {AuthenticationService} from "../authentificationService.service";
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,11 +13,8 @@ import {AuthenticationService} from "../authentificationService.service";
 })
 export class LoginComponent implements OnInit {
 
-    isAuthStatus = false;
     user: User;
     userForm:  FormGroup;
-    loading =  false;
-    returnUrl: string;
 
     constructor(
         private router: Router,
@@ -42,20 +38,14 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit(){
-        this.loading = true;
         this.user.login = this.userForm.controls.user.value;
         this.user.password = this.userForm.controls.password.value;
-
         this.authentificationService.login(this.user.login,this.user.password);
-
-        this.loading = false;
     }
 
     onClickSignOut(){
-        this.isAuthStatus = false;
-        this.authentificationService.logout().subscribe(user => {console.info('user disconnected')},
-            error => console.error('disconnection problem', error));
-        ;
+        this.authentificationService.logout();
+
     }
 
     onClickSignUp(){

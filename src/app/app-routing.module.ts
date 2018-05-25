@@ -30,6 +30,7 @@ const routes: Routes = [
         component: CompaniesComponent,
         pathMatch: 'full',
         canActivate: [AuthGuard]
+
     },
     {
         path: 'companies/:id',
@@ -52,9 +53,9 @@ const routes: Routes = [
 
     {
         path: '**',
-        redirectTo: 'companies',
+        redirectTo: 'login',
         pathMatch: 'full',
-        canActivate: [AuthGuard]
+
 
     }
 ];
