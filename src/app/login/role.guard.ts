@@ -5,15 +5,13 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot
 } from "@angular/router";
-import { AuthenticationService } from "./authentificationService.service";
 
 @Injectable()
-export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private auth: AuthenticationService) {}
+export class RoleGuard implements CanActivate {
+  constructor(private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (localStorage.getItem("token")) {
-      console.info(localStorage.getItem("token"));
+    if (localStorage.getItem("role") && localStorage.getItem("role") === "ROLE_ADMIN") {
       return true;
     } else {
       this.router.navigate(["companies"]);

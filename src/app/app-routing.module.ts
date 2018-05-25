@@ -8,62 +8,44 @@ import {UpdateCompanyComponent} from './company/update-company/update-company.co
 import {LoginComponent} from "./login/login-page/login.component";
 import {LoginAddComponent} from "./login/login-add/login-add.component";
 import {AuthGuard} from "./login/auth.guard";
+import { RoleGuard } from './login/role.guard';
 
 const routes: Routes = [
     {
         path: 'companies',
         component: CompaniesComponent,
         pathMatch: 'full',
-        canActivate: [AuthGuard]
     },
     {
         path: 'companies/add',
         component: CreateCompanyComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        pathMatch: 'full'
     },
-
     {
         path: 'companies/:id/update',
         component: UpdateCompanyComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard, RoleGuard],
+        pathMatch: 'full'
+    },
+    {
+        path: 'companies/:id',
+        component: CompanyDetailsComponent,
+        pathMatch: 'full'
     },
     {
         path: 'loginAdd',
         component: LoginAddComponent,
         pathMatch: 'full',
     },
-
     {
         path: 'login',
         component: LoginComponent,
-        pathMatch: 'full',
-
+        pathMatch: 'full'
     },
-    {
-        path: 'companies',
-        component: CompaniesComponent,
-        pathMatch: 'full',
-        canActivate: [AuthGuard]
-    },
-    {
-        path: 'companies/:id',
-        component: CompanyDetailsComponent,
-        canActivate: [AuthGuard]
-    },
-    {
-        path: 'companies',
-        component: CreateCompanyComponent,
-        canActivate: [AuthGuard]
-    },
-    {
-        path: 'companies',
-        component: UpdateCompanyComponent,
-        canActivate: [AuthGuard]
-    },
-
     {
         path: '**',
-        redirectTo: 'login',
+        redirectTo: 'companies',
         pathMatch: 'full'
     }
 ];

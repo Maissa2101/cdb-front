@@ -1,33 +1,30 @@
+<div class="formLogin">
+  <form (ngSubmit)="onSubmit()" [formGroup]="userForm">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput class="form-control" formControlName="user">
+        <mat-hint>Please enter your username</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput class="form-control" formControlName="password">
+        <mat-hint>Please enter your password</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
 
-    <div class="formLogin">
-      <form (ngSubmit)="onSubmit()" [formGroup]="userForm">
-        <p>
-          <mat-form-field appearance="outline">
-            <mat-label>Username</mat-label>
-            <input matInput class="form-control" formControlName="user" >
-            <mat-hint>Please enter your username</mat-hint>
-          </mat-form-field>
-        </p>
-        <p>
-          <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input type="password" matInput class="form-control" formControlName="password" >
-            <mat-hint>Please enter your password</mat-hint>
-          </mat-form-field>
-        </p>
-        <p>
-
-          <button   mat-raised-button type="submit" [disabled]="userForm.invalid">
-          Submit
-         </button>
-        <button    mat-raised-button (click)="onClickSignOut()">
-          Log out
-        </button>
-          <button (click)="onClickSignUp()"   mat-raised-button>
-          Sign up
-        </button>
-        </p>
-        <p><a style="color:blue;" href="https://assistance.orange.fr/assistance-commerciale/l-identification/gerer-vos-mots-de-passe/mot-de-passe-perdu-ou-incorrect_216803-759648">password forgetten? </a></p>
-      </form>
-    </div>
-
+      <button mat-raised-button type="submit" [disabled]="userForm.invalid">
+        Submit
+      </button>
+      <button mat-raised-button (click)="onClickSignOut()">
+        Log out
+      </button>
+      <button (click)="onClickSignUp()" mat-raised-button>
+        Sign up
+      </button>
+    </p>
+  </form>
+</div>
