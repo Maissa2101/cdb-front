@@ -38,7 +38,7 @@
            matSort matSortDirection="desc">
 
        <!-- Checkbox Column -->
-       <ng-container matColumnDef="select">
+       <ng-container matColumnDef="select" class="checkbox-a">
          <th mat-header-cell *matHeaderCellDef>
            <mat-checkbox (change)="$event ? masterToggle() : null"
                          [checked]="selection.hasValue() && isAllSelected()"
