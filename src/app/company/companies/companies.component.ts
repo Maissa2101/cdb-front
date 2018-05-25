@@ -6,6 +6,7 @@ import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar } from '@angular
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
+import {Router, RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-companies',
@@ -22,7 +23,7 @@ export class CompaniesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private companyService: CompanyService, public snackBar: MatSnackBar) {
+  constructor(private companyService: CompanyService, public snackBar: MatSnackBar, private router: Router) {
   }
 
   ngOnInit() {
@@ -36,7 +37,7 @@ export class CompaniesComponent implements OnInit {
         },
         error =>  {
           console.error('Problem in getting the company', error);
-          this.snackBar.open("Can't reach the database. Press 'F5' to refresh.", "Close", {
+          this.snackBar.open('Can\'t reach the database. Press F5 to refresh.', 'close', {
             panelClass: 'snackbar-error',
             duration: 2500,});
         } );
@@ -69,6 +70,10 @@ export class CompaniesComponent implements OnInit {
   deleteMultiple(companies: Company[]) {
     companies.forEach(company =>
       this.delete(company));
+  }
+
+  selectRow(id) {
+    this.router.navigate([`/companies/` + id]);
   }
 
 }
