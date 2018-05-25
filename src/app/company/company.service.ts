@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Company} from './company.model';
 
@@ -35,9 +35,5 @@ export class CompanyService {
 
     updateCompany(company: Company): Observable<Company> {
         return this.http.patch<Company>(`${this.baseUrl}/companies`, company);
-    }
-
-    search(search: string): Observable<Company[]> {
-      return this.http.get<Company[]>(`${this.baseUrl}/companies?search=${search}`);
     }
 }

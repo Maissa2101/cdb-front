@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {CompanyService} from '../company.service';
 import {Company} from '../company.model';
-import {InputMetadataWalker} from 'codelyzer/noInputRenameRule';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {SelectionModel} from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-companies',
@@ -9,8 +10,15 @@ import {InputMetadataWalker} from 'codelyzer/noInputRenameRule';
   styleUrls: ['./companies.component.css']
 })
 export class CompaniesComponent implements OnInit {
+  displayedColumns = ['select', 'id', 'name', 'logo'];
+  dataSource: MatTableDataSource<Company>;
+  companies: Company[] = [];
+  selection = new SelectionModel<Company>(true, []);
 
-  companies: Company[];
+  isDataGettingProblem = false;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private companyService: CompanyService) {
   }
@@ -18,9 +26,38 @@ export class CompaniesComponent implements OnInit {
   ngOnInit() {
     this.companyService.getCompanies()
       .subscribe(
-        companies => this.companies = companies,
-        error => console.error('Error in get list companies', error)
-      );
+        companies => {
+          this.companies = companies;
+          this.dataSource = new MatTableDataSource(this.companies);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        },
+        error => {
+          console.log('Unable to reach the database');
+          this.isDataGettingProblem = true;
+        });
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filterPredicate = (data: Company, filter: string) => data.name.indexOf(filter) != -1;
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
   delete(company: Company) {
@@ -33,10 +70,5 @@ export class CompaniesComponent implements OnInit {
       this.delete(company));
   }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim();
-    filterValue = filterValue.toLowerCase();
-    this.companies.filter(company => company.name.search(filterValue) !== -1);
-  }
-}
 
+}

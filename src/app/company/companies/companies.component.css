@@ -21,5 +21,22 @@
 .pagination a:hover:not(.active) {background-color: #ddd;}
 
 .infoBefore {
-  font-size: 2rem;
+  font-size: 1.8rem;
+}
+
+.checkbox-a {
+  width: 80px;
+}
+
+th {
+  color: black;
+  font-weight: bold;
+  font-family: Rubik ;
+}
+
+.material-icons {
+  font-size: 2.6rem;
+  vertical-align: middle;
+  margin-bottom: 8px;
+  margin-top: 2px;
 }
