@@ -25,7 +25,15 @@
 }
 
 .checkbox-a {
-  width: 80px;
+  width: 100px;
+}
+
+.cid {
+  width: 100px;
+}
+
+.cname {
+  width: 700px;
 }
 
 th {
