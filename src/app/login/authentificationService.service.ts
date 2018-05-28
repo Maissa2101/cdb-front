@@ -21,7 +21,7 @@ export class AuthenticationService {
     );
   }
 
-  public noErrorlogout() {
+  public clearLocalStorage() {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
   }
@@ -56,10 +56,10 @@ export class AuthenticationService {
       .post(`${this.baseUrl}logout`, {}, { responseType: "text" })
       .subscribe(
         () => {
-          this.noErrorlogout();
-          this.router.navigate(["companies"])
+          this.clearLocalStorage();
+          this.router.navigate(["companies"]);
         },
-        error => console.error(error)
+        error => this.clearLocalStorage()
       );
   }
 }
