@@ -43,9 +43,7 @@
                          [checked]="selection.hasValue() && isAllSelected()"
                          [indeterminate]="selection.hasValue() && !isAllSelected()">
            <div class="details" *ngIf="display">
-            <button (click)="deleteMultiple()" style="margin-left: 5px;"><i class="material-icons">
-             delete_forever
-           </i></button>
+             <button class="btn-delete" (click)="deleteMultiple()" style="margin-left: 5px;"><i class="material-icons">delete</i></button>
            </div>
            </mat-checkbox>
 
