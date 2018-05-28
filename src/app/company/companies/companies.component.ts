@@ -49,6 +49,13 @@ export class CompaniesComponent implements OnInit {
     }
   }
 
+  isConnected() : boolean{
+    if (localStorage.getItem("token")) {
+      return true;
+    }
+    return false;
+  }
+
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
