@@ -70,9 +70,15 @@ export class CompaniesComponent implements OnInit {
   }
 
   delete(company: Company) {
-    const i = this.companies.indexOf(company);
-    this.companies.splice(i, 1);
-    this.companyService.deleteCompany(company.id);
+    this.companyService.deleteCompany(company.id).subscribe(
+      () => {
+      },
+      error =>  {
+        console.error('Problem in getting the company', error);
+        this.snackBar.open('Can\'t delete the company. Try again.', 'close', {
+          panelClass: 'snackbar-error',
+          duration: 2500});
+      } );
   }
 
   deleteMultiple() {

@@ -24,7 +24,7 @@ export class CompanyService {
     }
 
     deleteCompany(id: number): Observable<{}> {
-        return this.http.delete(`${this.baseUrl}/companies`);
+        return this.http.delete(`${this.baseUrl}/companies/${id}`);
     }
 
     updateCompany(company: Company): Observable<any> {

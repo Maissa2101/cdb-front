@@ -29,4 +29,16 @@ export class CompanyDetailsComponent implements OnInit {
         } );
   }
 
+  delete(company: Company) {
+    this.companyService.deleteCompany(company.id).subscribe(
+      () => {
+      },
+      error =>  {
+        console.error('Problem in getting the company', error);
+        this.snackBar.open('Can\'t delete the company. Try again.', 'close', {
+          panelClass: 'snackbar-error',
+          duration: 2500});
+      } );
+  }
+
 }
