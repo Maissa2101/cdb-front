@@ -1,6 +1,11 @@
 img {
   font-size: 5rem;
   margin-top: 10px;
+  margin-right: 5px;
+}
+
+.avatar {
+  margin-top: 20px;
 }
 
 mat-card-title {
@@ -36,7 +41,7 @@ mat-card-title {
 }
 
 h3 img {
-  vertical-align:middle
+  vertical-align:middle;
 }
 
 .h3 {
