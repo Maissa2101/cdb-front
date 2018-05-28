@@ -21,9 +21,9 @@
       <mat-card-actions>
 
         <div>
-          <button class="btn-edit" routerLink="/companies/{{ company.id }}/update"><i class="material-icons">edit</i></button>
+          <button *ngIf="isConnected()" class="btn-edit" routerLink="/companies/{{ company.id }}/update"><i class="material-icons">edit</i></button>
 
-          <button class="btn-delete" (click)="delete(company)"><i class="material-icons">delete</i></button>
+          <button *ngIf="isConnected()" class="btn-delete" (click)="delete(company)"><i class="material-icons">delete</i></button>
         </div>
 
       </mat-card-actions>

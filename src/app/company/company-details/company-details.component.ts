@@ -1,16 +1,23 @@
+<<<<<<< HEAD
 import {Component, OnInit} from '@angular/core';
 import {Company} from '../company.model';
 import {CompanyService} from '../company.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
+=======
+import { Component, OnInit } from "@angular/core";
+import { Company } from "../company.model";
+import { CompanyService } from "../company.service";
+import { ActivatedRoute } from "@angular/router";
+import { MatSnackBar } from "@angular/material";
+>>>>>>> feature/handle-404
 
 @Component({
-  selector: 'app-company-details',
-  templateUrl: './company-details.component.html',
-  styleUrls: ['./company-details.component.css']
+  selector: "app-company-details",
+  templateUrl: "./company-details.component.html",
+  styleUrls: ["./company-details.component.css"]
 })
 export class CompanyDetailsComponent implements OnInit {
-
   id: number;
   company: Company;
 
@@ -42,14 +49,21 @@ export class CompanyDetailsComponent implements OnInit {
 
   delete(company: Company) {
     this.companyService.deleteCompany(company.id).subscribe(
-      () => {
-      },
-      error =>  {
-        console.error('Problem in getting the company', error);
-        this.snackBar.open('Can\'t delete the company. Try again.', 'close', {
-          panelClass: 'snackbar-error',
-          duration: 2500});
-      } );
+      () => {},
+      error => {
+        console.error("Problem in getting the company", error);
+        this.snackBar.open("Can't delete the company. Try again.", "close", {
+          panelClass: "snackbar-error",
+          duration: 2500
+        });
+      }
+    );
   }
 
+  isConnected(): boolean {
+    if (localStorage.getItem("token")) {
+      return true;
+    }
+    return false;
+  }
 }
