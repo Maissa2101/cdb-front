@@ -1,0 +1,46 @@
+<section class="section-table cid-qSGshc4hgR" id="table1-4">
+<div class="formUpdate">
+  <form (ngSubmit)="onSubmit()" [formGroup]="computerForm">
+    <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-1">
+      Computers</h2>
+    <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-6">Update a computer : {{computer?.id}}</h3>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput id="name" formControlName="name" name="name" value="{{computer?.name}}">
+        <mat-hint>Computer's name</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Introduced</mat-label>
+        <input matInput id="introduced" formControlName="introduced" name="introduced" value="{{computer?.introduced}}">
+        <mat-hint>Computer's introduced date.</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Discontinued</mat-label>
+        <input matInput id="discontinued" formControlName="discontinued" name="discontinued" value="{{computer?.discontinued}}">
+        <mat-hint>Computer's discontinued date.</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Company</mat-label>
+        <mat-select *ngFor="let company of companies" required id="company" formControlName="company" name="company" value="{{computer?.company}}">
+          <mat-option>-- None --</mat-option>
+          <mat-option value="company">{{company.name}}</mat-option>
+        </mat-select>
+        <mat-hint>Computer's manufacturer.</mat-hint>
+      </mat-form-field>
+    </p>
+    <button mat-raised-button type="submit" [disabled]="computerForm.invalid">
+      Submit
+    </button>
+    <button mat-raised-button routerLink="/computers">
+      Go back
+    </button>
+  </form>
+</div>
+</section>

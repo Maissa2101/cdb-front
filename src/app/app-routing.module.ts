@@ -9,8 +9,34 @@ import {LoginComponent} from "./login/login-page/login.component";
 import {LoginAddComponent} from "./login/login-add/login-add.component";
 import {AuthGuard} from "./login/auth.guard";
 import { RoleGuard } from './login/role.guard';
+import { ComputersComponent } from './computer/computers/computers.component';
+import { CreateComputerComponent } from './computer/create-computer/create-computer.component';
+import { UpdateComputerComponent } from './computer/update-computer/update-computer.component';
+import { ComputerDetailsComponent } from './computer/computer-details/computer-details.component';
 
 const routes: Routes = [
+    {
+        path: 'computers',
+        component: ComputersComponent,
+        pathMatch: 'full',
+    },
+    {
+        path: 'computers/add',
+        component: CreateComputerComponent,
+        canActivate: [AuthGuard],
+        pathMatch: 'full'
+    },
+    {
+        path: 'computers/:id/update',
+        component: UpdateComputerComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        pathMatch: 'full'
+    },
+    {
+        path: 'computers/:id',
+        component: ComputerDetailsComponent,
+        pathMatch: 'full'
+    },
     {
         path: 'companies',
         component: CompaniesComponent,
