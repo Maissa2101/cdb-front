@@ -47,10 +47,6 @@ export class LoginComponent implements OnInit {
     this.authentificationService.login(this.user.login, this.user.password);
   }
 
-  onClickSignOut() {
-    this.authentificationService.logout();
-  }
-
   onClickSignUp() {
     this.router.navigate(["loginAdd"]);
   }
