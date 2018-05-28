@@ -1,27 +1,29 @@
-<div class="formLogin">
-  <form (ngSubmit)="onSubmit()" [formGroup]="userForm">
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Username</mat-label>
-        <input matInput class="form-control" formControlName="user">
-        <mat-hint>Please enter your username</mat-hint>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input type="password" matInput class="form-control" formControlName="password">
-        <mat-hint>Please enter your password</mat-hint>
-      </mat-form-field>
-    </p>
-    <p>
-
-      <button mat-raised-button type="submit" [disabled]="userForm.invalid">
-        Submit
-      </button>
-      <button (click)="onClickSignUp()" mat-raised-button>
-        Sign up
-      </button>
-    </p>
-  </form>
-</div>
+<section class="section-table cid-qSGshc4hgR" id="table1-4">
+  <div class="formLogin">
+    <form (ngSubmit)="onSubmit()" [formGroup]="userForm">
+      <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-6">Sign in</h3>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="user" placeholder="Username">
+          <mat-hint>Please enter your username</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password" placeholder="Password">
+          <mat-hint>Please enter your password</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <button mat-raised-button type="submit" [disabled]="userForm.invalid">
+          Submit
+        </button>
+        <button mat-raised-button (click)="onClickSignUp()" mat-raised-button>
+          Sign up
+        </button>
+      </p>
+    </form>
+  </div>
+</section>
