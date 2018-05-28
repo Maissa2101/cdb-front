@@ -29,6 +29,7 @@
           </div>
           <div class="col-md-6"></div>
         </div>
+        <div class="col-md-6"></div>
       </div>
   <div class="example-container mat-elevation-z8">
 
@@ -43,7 +44,7 @@
                          [checked]="selection.hasValue() && isAllSelected()"
                          [indeterminate]="selection.hasValue() && !isAllSelected()">
            <div class="details" *ngIf="display">
-             <button class="btn-delete" (click)="deleteMultiple()" style="margin-left: 5px;"><i class="material-icons">delete</i></button>
+             <button *ngIf="isConnected()" class="btn-delete" (click)="deleteMultiple()"><i class="material-icons">delete</i></button>
            </div>
            </mat-checkbox>
 

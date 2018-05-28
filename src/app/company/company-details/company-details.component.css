@@ -1,5 +1,4 @@
 img {
-  font-size: 5rem;
   margin-top: 10px;
   margin-right: 5px;
 }
@@ -49,4 +48,6 @@ h3 img {
   margin-top: 12px;
 }
 
-
+.show-computers {
+  margin-top: 20px;
+}

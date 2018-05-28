@@ -4,7 +4,8 @@
     <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-1">
       Companies</h2>
 
-    <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-6">Company with id : {{company?.id}}</h3>
+    <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-6">Company with id :
+      {{company?.id}}</h3>
 
     <mat-card class="center" *ngIf="company">
       <mat-card-header>
@@ -14,7 +15,8 @@
           <img mat-card-avatar [src]="company.logo">
         </div>
         <div *ngIf="!company.logo">
-          <img mat-card-avatar src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAJFBMVEXu7u7W1tbi4uLp6enY2Njc3Nzs7Ozm5ube3t7j4+Px8fHT09N+C66kAAACFElEQVR4nO3c0XKiMABA0QJREf7/f7crahCxjTw0JJ7T6YOx03IHrRCDX18AAAAAAAAAAAAAAAAAAPCJurY9t0m+f6zLvbVbtGOTbGxzb+0WbXpg0xRZeH6n8Jx7a7eofx8qVLh/ChXu31R4iEIMCrPhwgtDN9xuD+14b+zjaBdKL4wDfdyHfRytqXB62Ibvr1oL69+HCouj8Erhjn1M4XA3O1Dt4+ix8MKmGe+ameVoyYVpFO6Swo8s7E5J9vImx3phWL89FR6S3uoY2+GXP/1HNuzDQ9LP7uZtnGthWO6114XHtMLdPGmf9uFK6n2ojsJpAuOnjU59HmYuu5mOS8/dXR8DD3H0NDsu7dIcM5fdvJiJuoiziRWcW8SBWs+e4oDC4mwoLP0/za+Fxz4k2cuyhg2FJb7iv3q1iKPVFYbLd52Fw+or/lB8YR/X5822P8zW9BVemEqhwiwUKlSY30cWPk1E1TfX9qq05MK1lXvhxcq9IgsfVu7FbazpyPvpDPgSVOfZ0wec4ytUqPDPKbyqsrCy2cQ3Vu49FI4PmrGJh7O7Klys0Qsr29+sFp6GB1/D7L6dFb7xwHsoXP46hRkoVLigMAOFChcUZqBQ4YLCDBQqXFCYgcIKCt/+vLZjvN5iXBbucSaqS/3Ivf8fujdNq57i0NP1aT/dl8sbV5jt5GI0AAAAAAAAAAAAAAAAAACK9g8n9CXxUcUZDQAAAABJRU5ErkJggg==">
+          <img mat-card-avatar
+               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAJFBMVEXu7u7W1tbi4uLp6enY2Njc3Nzs7Ozm5ube3t7j4+Px8fHT09N+C66kAAACFElEQVR4nO3c0XKiMABA0QJREf7/f7crahCxjTw0JJ7T6YOx03IHrRCDX18AAAAAAAAAAAAAAAAAAPCJurY9t0m+f6zLvbVbtGOTbGxzb+0WbXpg0xRZeH6n8Jx7a7eofx8qVLh/ChXu31R4iEIMCrPhwgtDN9xuD+14b+zjaBdKL4wDfdyHfRytqXB62Ibvr1oL69+HCouj8Erhjn1M4XA3O1Dt4+ix8MKmGe+ameVoyYVpFO6Swo8s7E5J9vImx3phWL89FR6S3uoY2+GXP/1HNuzDQ9LP7uZtnGthWO6114XHtMLdPGmf9uFK6n2ojsJpAuOnjU59HmYuu5mOS8/dXR8DD3H0NDsu7dIcM5fdvJiJuoiziRWcW8SBWs+e4oDC4mwoLP0/za+Fxz4k2cuyhg2FJb7iv3q1iKPVFYbLd52Fw+or/lB8YR/X5822P8zW9BVemEqhwiwUKlSY30cWPk1E1TfX9qq05MK1lXvhxcq9IgsfVu7FbazpyPvpDPgSVOfZ0wec4ytUqPDPKbyqsrCy2cQ3Vu49FI4PmrGJh7O7Klys0Qsr29+sFp6GB1/D7L6dFb7xwHsoXP46hRkoVLigMAOFChcUZqBQ4YLCDBQqXFCYgcIKCt/+vLZjvN5iXBbucSaqS/3Ivf8fujdNq57i0NP1aT/dl8sbV5jt5GI0AAAAAAAAAAAAAAAAAACK9g8n9CXxUcUZDQAAAABJRU5ErkJggg==">
         </div>
 
         <h3 class="mbr-section-title mbr-fonts-style pb-3 display-2 h3" mat-line>{{ company.name }}</h3>
@@ -22,20 +24,28 @@
 
       </mat-card-header>
 
-       <div *ngIf="company.logo" class="avatar">
-          <img mat-card-image [src]="company.logo" alt="logo of the company">
-       </div>
+      <div *ngIf="company.logo" class="avatar">
+        <img mat-card-image [src]="company.logo" alt="logo of the company">
+      </div>
 
       <div *ngIf="!company.logo" class="avatar">
-            <img mat-card-image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAJFBMVEXu7u7W1tbi4uLp6enY2Njc3Nzs7Ozm5ube3t7j4+Px8fHT09N+C66kAAACFElEQVR4nO3c0XKiMABA0QJREf7/f7crahCxjTw0JJ7T6YOx03IHrRCDX18AAAAAAAAAAAAAAAAAAPCJurY9t0m+f6zLvbVbtGOTbGxzb+0WbXpg0xRZeH6n8Jx7a7eofx8qVLh/ChXu31R4iEIMCrPhwgtDN9xuD+14b+zjaBdKL4wDfdyHfRytqXB62Ibvr1oL69+HCouj8Erhjn1M4XA3O1Dt4+ix8MKmGe+ameVoyYVpFO6Swo8s7E5J9vImx3phWL89FR6S3uoY2+GXP/1HNuzDQ9LP7uZtnGthWO6114XHtMLdPGmf9uFK6n2ojsJpAuOnjU59HmYuu5mOS8/dXR8DD3H0NDsu7dIcM5fdvJiJuoiziRWcW8SBWs+e4oDC4mwoLP0/za+Fxz4k2cuyhg2FJb7iv3q1iKPVFYbLd52Fw+or/lB8YR/X5822P8zW9BVemEqhwiwUKlSY30cWPk1E1TfX9qq05MK1lXvhxcq9IgsfVu7FbazpyPvpDPgSVOfZ0wec4ytUqPDPKbyqsrCy2cQ3Vu49FI4PmrGJh7O7Klys0Qsr29+sFp6GB1/D7L6dFb7xwHsoXP46hRkoVLigMAOFChcUZqBQ4YLCDBQqXFCYgcIKCt/+vLZjvN5iXBbucSaqS/3Ivf8fujdNq57i0NP1aT/dl8sbV5jt5GI0AAAAAAAAAAAAAAAAAACK9g8n9CXxUcUZDQAAAABJRU5ErkJggg==">
+        <img mat-card-image
+             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAJFBMVEXu7u7W1tbi4uLp6enY2Njc3Nzs7Ozm5ube3t7j4+Px8fHT09N+C66kAAACFElEQVR4nO3c0XKiMABA0QJREf7/f7crahCxjTw0JJ7T6YOx03IHrRCDX18AAAAAAAAAAAAAAAAAAPCJurY9t0m+f6zLvbVbtGOTbGxzb+0WbXpg0xRZeH6n8Jx7a7eofx8qVLh/ChXu31R4iEIMCrPhwgtDN9xuD+14b+zjaBdKL4wDfdyHfRytqXB62Ibvr1oL69+HCouj8Erhjn1M4XA3O1Dt4+ix8MKmGe+ameVoyYVpFO6Swo8s7E5J9vImx3phWL89FR6S3uoY2+GXP/1HNuzDQ9LP7uZtnGthWO6114XHtMLdPGmf9uFK6n2ojsJpAuOnjU59HmYuu5mOS8/dXR8DD3H0NDsu7dIcM5fdvJiJuoiziRWcW8SBWs+e4oDC4mwoLP0/za+Fxz4k2cuyhg2FJb7iv3q1iKPVFYbLd52Fw+or/lB8YR/X5822P8zW9BVemEqhwiwUKlSY30cWPk1E1TfX9qq05MK1lXvhxcq9IgsfVu7FbazpyPvpDPgSVOfZ0wec4ytUqPDPKbyqsrCy2cQ3Vu49FI4PmrGJh7O7Klys0Qsr29+sFp6GB1/D7L6dFb7xwHsoXP46hRkoVLigMAOFChcUZqBQ4YLCDBQqXFCYgcIKCt/+vLZjvN5iXBbucSaqS/3Ivf8fujdNq57i0NP1aT/dl8sbV5jt5GI0AAAAAAAAAAAAAAAAAACK9g8n9CXxUcUZDQAAAABJRU5ErkJggg==">
       </div>
 
       <mat-card-actions>
 
         <div>
-          <button class="btn-edit" routerLink="/companies/{{ company.id }}/update"><i class="material-icons">edit</i></button>
+          <button *ngIf="isConnected()" class="btn-edit" routerLink="/companies/{{ company.id }}/update"><i
+            class="material-icons">edit</i></button>
 
-          <button class="btn-delete" (click)="delete(company)"><i class="material-icons">delete</i></button>
+          <button *ngIf="isConnected()" class="btn-delete" (click)="delete(company)"><i
+            class="material-icons">delete</i></button><br>
+
+          <div class="show-computers">
+            <button mat-button (click)="toggleExpand()">{{buttonLabel}}</button>
+          </div>
+
         </div>
 
       </mat-card-actions>

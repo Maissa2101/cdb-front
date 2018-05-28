@@ -1,0 +1,41 @@
+
+
+<div class="formLogin">
+  <form (ngSubmit)="onSubmit()" [formGroup]="userForm">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input matInput class="form-control" formControlName="user" >
+        <mat-hint>Please enter your username</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput class="form-control" formControlName="password" >
+        <mat-hint>Please enter your password</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput class="form-control" formControlName="password2" >
+        <mat-hint>Please enter your password again</mat-hint>
+      </mat-form-field>
+    </p>
+    <button
+            mat-raised-button type="submit" [disabled]="userForm.invalid">
+      Submit
+    </button>
+    <button  (click)="onClickGoback()"   mat-raised-button>
+      Go back
+    </button>
+  </form>
+</div>
+
+
+
+
+
+
+

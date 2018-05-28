@@ -5,24 +5,43 @@ import {CompaniesComponent} from './company/companies/companies.component';
 import {CompanyDetailsComponent} from './company/company-details/company-details.component';
 import {CreateCompanyComponent} from './company/create-company/create-company.component';
 import {UpdateCompanyComponent} from './company/update-company/update-company.component';
+import {LoginComponent} from "./login/login-page/login.component";
+import {LoginAddComponent} from "./login/login-add/login-add.component";
+import {AuthGuard} from "./login/auth.guard";
+import { RoleGuard } from './login/role.guard';
 
 const routes: Routes = [
     {
         path: 'companies',
         component: CompaniesComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
     },
     {
         path: 'companies/add',
         component: CreateCompanyComponent,
-    },
-    {
-        path: 'companies/:id',
-        component: CompanyDetailsComponent,
+        canActivate: [AuthGuard],
+        pathMatch: 'full'
     },
     {
         path: 'companies/:id/update',
         component: UpdateCompanyComponent,
+        canActivate: [AuthGuard, RoleGuard],
+        pathMatch: 'full'
+    },
+    {
+        path: 'companies/:id',
+        component: CompanyDetailsComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'loginAdd',
+        component: LoginAddComponent,
+        pathMatch: 'full',
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
+        pathMatch: 'full'
     },
     {
         path: '**',
