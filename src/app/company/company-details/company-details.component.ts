@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Company} from '../company.model';
 import {CompanyService} from '../company.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 
 @Component({
@@ -14,7 +14,7 @@ export class CompanyDetailsComponent implements OnInit {
   id: number;
   company: Company;
 
-  constructor(private companyService: CompanyService, private route: ActivatedRoute, public snackBar: MatSnackBar) {
+  constructor(private companyService: CompanyService, private route: ActivatedRoute, private router: Router, public snackBar: MatSnackBar) {
     this.id = +this.route.snapshot.paramMap.get('id');
   }
 
@@ -22,11 +22,22 @@ export class CompanyDetailsComponent implements OnInit {
     this.companyService.getById(this.id)
       .subscribe(company => this.company = company,
         error =>  {
-          console.error('Problem in getting the company', error);
-          this.snackBar.open('Can\'t reach the database. Press F5 to refresh.', 'Close', {
-            panelClass: 'snackbar-error',
-            duration: 2500,});
-        } );
+          if (error.status == 404) {
+            console.error();
+            this.snackBar.open('This page does not exist.', 'Close', {
+              panelClass: 'snackbar-error',
+              duration: 2500,});
+          } else if (error.status > 499) {
+            this.snackBar.open('Can\'t reach the database. Press F5 or try later.', 'Close', {
+              panelClass: 'snackbar-error',
+              duration: 2500,});
+          } else {
+            this.snackBar.open(error.status + ': Press F5 or try later.', 'Close', {
+              panelClass: 'snackbar-error',
+              duration: 2500,});
+          }
+          this.router.navigate([`/companies/`]);
+      } );
   }
 
   delete(company: Company) {
