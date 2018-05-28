@@ -21,5 +21,30 @@
 .pagination a:hover:not(.active) {background-color: #ddd;}
 
 .infoBefore {
-  font-size: 2rem;
+  font-size: 1.8rem;
+}
+
+.checkbox-a {
+  width: 100px;
+}
+
+.cid {
+  width: 100px;
+}
+
+.cname {
+  width: 700px;
+}
+
+th {
+  color: black;
+  font-weight: bold;
+  font-family: Rubik ;
+}
+
+.material-icons {
+  font-size: 2.6rem;
+  vertical-align: middle;
+
+  color: #721c24;
 }

@@ -1,11 +1,9 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {CompanyService} from '../company.service';
 import {Company} from '../company.model';
-import {InputMetadataWalker} from 'codelyzer/noInputRenameRule';
 import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar } from '@angular/material';
-import {merge, Observable, of as observableOf} from 'rxjs';
-import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-companies',
@@ -15,14 +13,19 @@ import { SelectionModel } from '@angular/cdk/collections';
 export class CompaniesComponent implements OnInit {
 
   displayedColumns = ['select', 'id', 'name', 'logo'];
-  dataSource : MatTableDataSource<Company>;
+  dataSource: MatTableDataSource<Company>;
   selection = new SelectionModel<Company>(true, []);
-  companies : Company[] = [];
+  companies: Company[] = [];
+
+  @Input()
+  display = false;
+
+  @Output() deleteR = new EventEmitter<Company>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private companyService: CompanyService, public snackBar: MatSnackBar) {
+  constructor(private companyService: CompanyService, public snackBar: MatSnackBar, private router: Router) {
   }
 
   ngOnInit() {
@@ -36,7 +39,7 @@ export class CompaniesComponent implements OnInit {
         },
         error =>  {
           console.error('Problem in getting the company', error);
-          this.snackBar.open("Can't reach the database. Press 'F5' to refresh.", "Close", {
+          this.snackBar.open('Can\'t reach the database. Press F5 to refresh.', 'close', {
             panelClass: 'snackbar-error',
             duration: 2500,});
         } );
@@ -62,6 +65,11 @@ export class CompaniesComponent implements OnInit {
     return numSelected === numRows;
   }
 
+  isOneSelected() {
+    this.display = true;
+    return true;
+  }
+
   masterToggle() {
     this.isAllSelected() ?
         this.selection.clear() :
@@ -69,13 +77,23 @@ export class CompaniesComponent implements OnInit {
   }
 
   delete(company: Company) {
-    const i = this.companies.indexOf(company);
-    this.companies.splice(i, 1);
+    this.companyService.deleteCompany(company.id).subscribe(
+      () => {
+      },
+      error =>  {
+        console.error('Problem in getting the company', error);
+        this.snackBar.open('Can\'t delete the company. Try again.', 'close', {
+          panelClass: 'snackbar-error',
+          duration: 2500});
+      } );
   }
 
-  deleteMultiple(companies: Company[]) {
-    companies.forEach(company =>
-      this.delete(company));
+  deleteMultiple() {
+    this.selection.selected.forEach(company => this.delete(company) );
   }
 
+
+  selectRow(id) {
+    this.router.navigate([`/companies/` + id]);
+  }
 }

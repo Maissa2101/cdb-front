@@ -6,7 +6,7 @@ import {Company} from './company.model';
 @Injectable()
 export class CompanyService {
 
-    private baseUrl = 'http://10.0.1.94:8080/cdb-webservice';
+    private baseUrl = 'http://localhost:8080/cdb-webservice';
 
     constructor(private http: HttpClient) {
     }
@@ -24,7 +24,7 @@ export class CompanyService {
     }
 
     deleteCompany(id: number): Observable<{}> {
-        return this.http.delete(`${this.baseUrl}/companies/${id}`);
+        return this.http.delete(`${this.baseUrl}/companies/${id}`, {responseType: 'text'});
     }
 
     deleteCompanies(ids: number[]): void {
@@ -39,5 +39,6 @@ export class CompanyService {
 
     search(search: string): Observable<Company[]> {
       return this.http.get<Company[]>(`${this.baseUrl}/companies/${search}`);
+
     }
 }
