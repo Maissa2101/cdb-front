@@ -21,7 +21,8 @@
 .pagination a:hover:not(.active) {background-color: #ddd;}
 
 .infoBefore {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
+  font-family: Rubik;
 }
 
 .checkbox-a {
@@ -42,9 +43,23 @@ th {
   font-family: Rubik ;
 }
 
-.material-icons {
-  font-size: 2.6rem;
-  vertical-align: middle;
-
-  color: #721c24;
+.btn-delete {
+  background-color: white;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  margin-left: -12px;
 }
+
+.delete {
+  font-size: 3.5rem;
+  vertical-align: middle;
+  color: maroon;
+}
+
+.add {
+  font-family: Rubik;
+  font-weight: bold;
+}
+

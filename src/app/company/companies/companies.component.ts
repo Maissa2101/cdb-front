@@ -47,6 +47,9 @@ export class CompaniesComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
+    this.dataSource.filterPredicate = (data, filter) =>
+      (data.name.toLowerCase().trim().indexOf(filter.toLowerCase().trim()) !== -1
+        || data.id.toString().indexOf(filter.trim()) !== -1);
     this.dataSource.filter = filterValue;
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -81,6 +84,7 @@ export class CompaniesComponent implements OnInit {
   deleteMultiple() {
     if (confirm('Are you sure to delete these companies ?')) {
       this.selection.selected.forEach(company => this.delete(company));
+      window.location.reload();
     }
   }
 

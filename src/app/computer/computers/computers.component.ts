@@ -51,28 +51,16 @@ export class ComputersComponent implements OnInit {
     }
   }
 
-  isConnected() : boolean{
-    if (localStorage.getItem("token")) {
+  isConnected(): boolean {
+    if (localStorage.getItem('token')) {
       return true;
     }
     return false;
   }
 
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
   isOneSelected() {
-    this.display = true;
+    this.display = !this.display;
     return true;
-  }
-
-  masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
   delete(computer: Computer) {
@@ -89,7 +77,10 @@ export class ComputersComponent implements OnInit {
   }
 
   deleteMultiple() {
-    this.selection.selected.forEach(computer => this.delete(computer) );
+    if (confirm('Are you sure to delete these computers ?')) {
+      this.selection.selected.forEach(computer => this.delete(computer));
+      window.location.reload();
+    }
   }
 
 
