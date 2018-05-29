@@ -20,7 +20,7 @@ export class AuthenticationService {
         this.router.navigate(["companies"]);
 
         this.snackBar.open("Success login", "Close", {
-          panelClass: 'snackbar-ok',
+          panelClass: 'snackbar-info',
           duration: 2500,});
       },
       error => {
@@ -36,7 +36,7 @@ export class AuthenticationService {
       localStorage.removeItem("token");
     localStorage.removeItem("role");
 
-    this.snackBar.open("Unrecognized user", "Close", {
+    this.snackBar.open("Username or password is incorrect. Please try again.", "Close", {
       panelClass: 'snackbar-error',
       duration: 2500,});
 
