@@ -16,7 +16,6 @@ export class LoginAddComponent implements OnInit {
 
     user = new User();
     userForm:  FormGroup;
-    passwordRegex: any = '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$';
     nameRegex: any = '[a-zA-Z0-9]+';
 
 
@@ -39,12 +38,10 @@ export class LoginAddComponent implements OnInit {
 
             password: ["",   [Validators.required,
                               Validators.minLength(5),
-                              Validators.maxLength(20),
-                              Validators.pattern(this.passwordRegex)
+                              Validators.maxLength(20)
                 ]],
 
-            password2:["",   [Validators.required,
-                              Validators.pattern(this.passwordRegex)
+            password2:["",   [Validators.required
              ]]
         });
     }
