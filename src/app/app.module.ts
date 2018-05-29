@@ -31,6 +31,12 @@ import { AuthenticationService } from "./login/authentificationService.service";
 import { AuthGuard } from "./login/auth.guard";
 import { JwtInterceptor } from "./login/jwt.interceptor";
 import { RoleGuard } from "./login/role.guard";
+import { ComputerService } from "./computer/computer.service";
+import { ComputerComponent } from "./computer/computer.component";
+import { ComputerDetailsComponent } from "./computer/computer-details/computer-details.component";
+import { ComputersComponent } from "./computer/computers/computers.component";
+import { CreateComputerComponent } from "./computer/create-computer/create-computer.component";
+import { UpdateComputerComponent } from "./computer/update-computer/update-computer.component";
 
 @NgModule({
   declarations: [
@@ -42,6 +48,11 @@ import { RoleGuard } from "./login/role.guard";
     CompaniesComponent,
     CreateCompanyComponent,
     UpdateCompanyComponent,
+    ComputerComponent,
+    ComputerDetailsComponent,
+    ComputersComponent,
+    CreateComputerComponent,
+    UpdateComputerComponent,
     LoginComponent,
     LoginAddComponent,
     AlertComponent,
@@ -60,6 +71,7 @@ import { RoleGuard } from "./login/role.guard";
 
   providers: [
     CompanyService,
+    ComputerService,
     UserService,
     AlertService,
     AuthenticationService,
