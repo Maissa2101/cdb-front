@@ -40,8 +40,8 @@ export class CreateComputerComponent implements OnInit {
   onSubmit(computer: Computer) {
     if (this.computerForm.controls.name.value) {
       this.computer.name = this.computerForm.controls.name.value;
-      this.computer.introduced = this.computerForm.controls.introduced.value;
-      this.computer.discontinued = this.computerForm.controls.discontinued.value;
+      this.computer.introduced = new Date(this.computerForm.controls.introduced.value).toISOString().substring(0, 10)
+      this.computer.discontinued = new Date(this.computerForm.controls.discontinued.value).toISOString().substring(0, 10)
       if (this.computerForm.controls.company.value !== '-1') {
         this.companies.forEach(localCompany => {
           if (localCompany.id === +this.computerForm.controls.company.value) {

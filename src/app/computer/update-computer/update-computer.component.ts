@@ -72,8 +72,8 @@ export class UpdateComputerComponent implements OnInit {
     } else {
       this.computer.company = null;
     }
-    this.computer.introduced = this.computerForm.controls.introduced.value;
-    this.computer.discontinued = this.computerForm.controls.discontinued.value;
+    this.computer.introduced = new Date(this.computerForm.controls.introduced.value).toISOString().substring(0, 10);
+    this.computer.discontinued = new Date(this.computerForm.controls.discontinued.value).toISOString().substring(0, 10);
     this.computerService.updateComputer(this.computer)
       .subscribe(() => {
           this.snackBar.open('The computer has been updated.', 'Close', {
@@ -82,10 +82,17 @@ export class UpdateComputerComponent implements OnInit {
           });
           this.router.navigate([`/computers/` + this.id]);
         }, error => {
-          this.snackBar.open('Can\'t update the computer. Please try again.', 'Close', {
-            panelClass: 'snackbar-error',
-            duration: 2500
-          });
+          if (error.status === 400) {
+            this.snackBar.open('Error in the fields, invalid entries (Check the dates).', 'Close', {
+              panelClass: 'snackbar-error',
+              duration: 2500
+            });
+          } else {
+            this.snackBar.open('Can\'t update the computer. Please try again.', 'Close', {
+              panelClass: 'snackbar-error',
+              duration: 2500
+            });
+          }
         }
       );
   }
