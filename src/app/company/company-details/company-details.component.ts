@@ -14,9 +14,6 @@ export class CompanyDetailsComponent implements OnInit {
   id: number;
   company: Company;
 
-  @Input()
-  display = true;
-
   showDetails = false;
   buttonLabel = 'See computers';
 
@@ -47,16 +44,20 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   delete(company: Company) {
-    this.companyService.deleteCompany(company.id).subscribe(
-      () => {this.router.navigate([`/companies/`]);},
-      error => {
-        console.error('Problem in getting the company', error);
-        this.snackBar.open('Can\'t delete the company. Try again.', 'close', {
-          panelClass: 'snackbar-error',
-          duration: 2500
-        });
-      }
-    );
+    if (confirm('Are you sure to delete this company ?')) {
+      this.companyService.deleteCompany(company.id).subscribe(
+        () => {
+          this.router.navigate([`/companies/`]);
+        },
+        error => {
+          console.error('Problem in getting the company', error);
+          this.snackBar.open('Can\'t delete the company. Try again.', 'close', {
+            panelClass: 'snackbar-error',
+            duration: 2500
+          });
+        }
+      );
+    }
   }
 
   isConnected(): boolean {

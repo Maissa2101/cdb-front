@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {CompanyService} from '../company.service';
 import {Company} from '../company.model';
-import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar } from '@angular/material';
-import { SelectionModel } from '@angular/cdk/collections';
+import {MatPaginator, MatSort, MatTableDataSource, MatSnackBar} from '@angular/material';
+import {SelectionModel} from '@angular/cdk/collections';
 import {Router} from '@angular/router';
 
 @Component({
@@ -37,12 +37,13 @@ export class CompaniesComponent implements OnInit {
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         },
-        error =>  {
+        error => {
           console.error('Problem in getting the company', error);
           this.snackBar.open('Can\'t reach the database. Press F5 to refresh.', 'close', {
             panelClass: 'snackbar-error',
-            duration: 2500,});
-        } );
+            duration: 2500
+          });
+        });
   }
 
   applyFilter(filterValue: string) {
@@ -52,49 +53,39 @@ export class CompaniesComponent implements OnInit {
     }
   }
 
-  isConnected(): boolean{
+  isConnected(): boolean {
     if (localStorage.getItem('token')) {
       return true;
     }
     return false;
   }
 
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
   isOneSelected() {
-    this.display = true;
+    this.display = !this.display;
     return true;
-  }
-
-  masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
   delete(company: Company) {
     this.companyService.deleteCompany(company.id).subscribe(
       () => {
       },
-      error =>  {
+      error => {
         console.error('Problem in getting the company', error);
         this.snackBar.open('Can\'t delete the company. Try again.', 'close', {
           panelClass: 'snackbar-error',
-          duration: 2500});
-      } );
+          duration: 2500
+        });
+      });
   }
 
   deleteMultiple() {
-    this.selection.selected.forEach(company => this.delete(company));
-    this.router.navigate([`/companies/`]);
+    if (confirm('Are you sure to delete these companies ?')) {
+      this.selection.selected.forEach(company => this.delete(company));
+    }
   }
-
 
   selectRow(id) {
     this.router.navigate([`/companies/` + id]);
   }
+
 }
