@@ -13,10 +13,10 @@ import { CompaniesComponent } from "./company/companies/companies.component";
 import { CompanyDetailsComponent } from "./company/company-details/company-details.component";
 import { UpdateCompanyComponent } from "./company/update-company/update-company.component";
 import {
-  MatFormFieldModule,
+  MatFormFieldModule, MatIcon, MatIconModule,
   MatInputModule,
   MatPaginatorIntl,
-  MatTableModule
+  MatTableModule, MatTooltipModule
 } from "@angular/material";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
@@ -56,6 +56,8 @@ import { UpdateComputerComponent } from "./computer/update-computer/update-compu
     LoginComponent,
     LoginAddComponent,
     AlertComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,9 @@ import { UpdateComputerComponent } from "./computer/update-computer/update-compu
     HttpClientModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    MatInputModule
+    MatInputModule,
+    MatTooltipModule,
+    MatIconModule
   ],
 
   providers: [

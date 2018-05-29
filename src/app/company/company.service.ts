@@ -23,7 +23,7 @@ export class CompanyService {
         return this.http.post(`${this.baseUrl}/companies`, company, {responseType: 'text'});
     }
 
-    deleteCompany(id: number): Observable<{}> {
+    deleteCompany(id: number): Observable<any> {
         return this.http.delete(`${this.baseUrl}/companies/${id}`, {responseType: 'text'});
     }
 

@@ -3,9 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {User} from "../user.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../user.service";
-import {Alert} from "selenium-webdriver";
-import {AlertService} from "../alert.service";
-
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login-add',
@@ -14,59 +12,68 @@ import {AlertService} from "../alert.service";
 })
 export class LoginAddComponent implements OnInit {
 
-    user = new User();
-    userForm:  FormGroup;
-    nameRegex: any = '[a-zA-Z0-9]+';
+  user = new User();
+  userForm:  FormGroup;
+  nameRegex: any = '[a-zA-Z0-9]+';
 
 
-    constructor(private router: Router,
-                private activatedRoutes: ActivatedRoute,
-                private fb: FormBuilder,
-                private userService: UserService,
-                private alertService: AlertService
-    ) { }
+  constructor(private router: Router,
+              private activatedRoutes: ActivatedRoute,
+              private fb: FormBuilder,
+              private userService: UserService,
+              public snackBar: MatSnackBar
+  ) { }
 
-    createForm(){
-        this.userForm = this.fb.group({
+  createForm(){
+    this.userForm = this.fb.group({
 
-            user: ["",      [Validators.required,
-                             Validators.minLength(5),
-                             Validators.maxLength(20),
-                             Validators.pattern(this.nameRegex)
-                ]
-                  ],
+      user: ["",      [Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(20),
+        Validators.pattern(this.nameRegex)
+      ]
+      ],
 
-            password: ["",   [Validators.required,
-                              Validators.minLength(5),
-                              Validators.maxLength(20)
-                ]],
+      password: ["",   [Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(20)
+      ]],
 
-            password2:["",   [Validators.required
-             ]]
-        });
+      password2:["",   [Validators.required
+      ]]
+    });
+  }
+
+  onSubmit(){
+    if(this.userForm.controls.password.value == this.userForm.controls.password2.value ){
+
+      this.user.login = this.userForm.controls.user.value;
+      this.user.password = this.userForm.controls.password.value;
+      this.userService.createUser(this.user).subscribe(() => console.info('user created'),
+        error => console.error('Problem for adding new user', error));
+
+      this.router.navigate(['login']);
+
+      this.snackBar.open("Registration successfully !", "Close", {
+        panelClass: 'snackbar-info',
+        duration: 2500,});
     }
+    else{
 
-    onSubmit(){
-      if(this.userForm.controls.password.value == this.userForm.controls.password2.value ){
-          this.user.login = this.userForm.controls.user.value;
-          this.user.password = this.userForm.controls.password.value;
-          this.userService.createUser(this.user).subscribe(() => console.info('user created'),
-                                                          error => console.error('problem in add user', error));
-          this.router.navigate(['login']);
-          this.alertService.success('Registration successful', true)
-      }
-          else{
-            console.log('not the sames passwords');
-          }
-    }
+      console.info('Not the sames passwords');
 
-    onClickGoback(){
-        this.router.navigate(['login']);
-        console.log('go back');
+      this.snackBar.open("The passwords are not the sames. Please try again", "Close", {
+        panelClass: 'snackbar-error',
+        duration: 2500,});
     }
+  }
 
-    ngOnInit() {
-        this.user = new User();
-        this.createForm();
-    }
+  onClickGoback(){
+    this.router.navigate(['login']);
+  }
+
+  ngOnInit() {
+    this.user = new User();
+    this.createForm();
+  }
 }

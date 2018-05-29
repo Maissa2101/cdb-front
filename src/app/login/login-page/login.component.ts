@@ -1,14 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators
 } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { User } from "../user.model";
 import { UserService } from "../user.service";
-import { AlertService } from "../alert.service";
 import { AuthenticationService } from "../authentificationService.service";
 
 @Component({
@@ -25,7 +23,6 @@ export class LoginComponent implements OnInit {
     private activatedRoutes: ActivatedRoute,
     private fb: FormBuilder,
     private userService: UserService,
-    private alertService: AlertService,
     private authentificationService: AuthenticationService
   ) {}
 

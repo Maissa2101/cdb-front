@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {User} from "../login/user.model";
 import {Observable} from "rxjs/index";
 
@@ -11,7 +11,6 @@ export class UserService {
     constructor(private http: HttpClient) { }
 
     createUser(user: User): Observable<any> {
-        console.log(`${this.baseUrl}`);
         return this.http.post(`${this.baseUrl}`,user, {responseType:'text'});
     }
 }
