@@ -1,41 +1,34 @@
-
-
-<div class="formLogin">
-  <form (ngSubmit)="onSubmit()" [formGroup]="userForm">
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Username</mat-label>
-        <input matInput class="form-control" formControlName="user" >
-        <mat-hint>Please enter your username</mat-hint>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input type="password" matInput class="form-control" formControlName="password" >
-        <mat-hint>Please enter your password</mat-hint>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input type="password" matInput class="form-control" formControlName="password2" >
-        <mat-hint>Please enter your password again</mat-hint>
-      </mat-form-field>
-    </p>
-    <button
-            mat-raised-button type="submit" [disabled]="userForm.invalid">
-      Submit
-    </button>
-    <button  (click)="onClickGoback()"   mat-raised-button>
-      Go back
-    </button>
-  </form>
-</div>
-
-
-
-
-
-
-
+<section class="section-table cid-qSGshc4hgR" id="table1-4">
+  <div class="formLogin">
+    <form (ngSubmit)="onSubmit()" [formGroup]="userForm">
+      <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-6">Sign up</h3>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Username" formControlName="user">
+          <mat-hint>Please enter your username</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput placeholder="Password"formControlName="password">
+          <mat-hint>Please enter your password</mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm password</mat-label>
+          <input type="password" matInput placeholder="Confirm password" formControlName="password2">
+          <mat-hint>Please enter your password again</mat-hint>
+        </mat-form-field>
+      </p>
+      <button mat-raised-button type="submit" [disabled]="userForm.invalid">
+        Submit
+      </button>
+      <button (click)="onClickGoback()" mat-raised-button>
+        Go back
+      </button>
+    </form>
+  </div>
+</section>
