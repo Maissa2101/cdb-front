@@ -1,15 +1,6 @@
-img {
-  font-size: 5rem;
-  margin-top: 10px;
-}
-
-mat-card-title {
-  font-size: 50px;
-}
-
 .center {
   text-align: center;
-  max-width: 500px;
+  max-width: 400px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -35,11 +26,31 @@ mat-card-title {
   margin-right: 50px;
 }
 
-h3 img {
-  vertical-align:middle
+.h3 {
+  font-size: 4rem;
+  margin-top: 12px;
+  font-family: Rubik;
 }
 
-.h3 {
-  font-size: 3rem;
-  margin-top: 12px;
+
+p {
+  font-size: 2rem;
+  font-family: Rubik;
+  margin-bottom: 50px;
+}
+
+i {
+  vertical-align:middle;
+  margin-right: 5px;
+}
+
+.content {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+mat-divider {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #721c24;
 }

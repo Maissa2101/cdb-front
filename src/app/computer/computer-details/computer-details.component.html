@@ -4,21 +4,38 @@
     <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-1">
       Computers</h2>
 
-    <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-6">Computer with id : {{computer?.id}}</h3>
+    <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-6">Computer with id :
+      {{computer?.id}}</h3>
 
     <mat-card class="center" *ngIf="computer">
       <mat-card-header>
 
-        <h3 class="mbr-section-title mbr-fonts-style pb-3 display-2 h3" mat-line>{{ computer.name }}</h3>
-        <p>Introduced: {{ computer.introduced }}</p>
-        <p>Discontinued: {{ computer.discontinued }}</p>
-        <p>Manufactor: {{ computer.company?.name }}</p>
+        <h3 class="mbr-section-title mbr-fonts-style pb-3 display-1 h3" mat-line style="align: center">{{ computer.name
+          }}</h3>
 
       </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
+
+      <div class="content">
+        <mat-card-content>
+          <p>
+            <i class="material-icons">date_range</i> Introduced date : <br> {{ computer.introduced }}<br>
+          </p>
+          <p>
+            <i class="material-icons">date_range</i> Discontinued date : <br> {{ computer.discontinued }}<br>
+          </p>
+          <p>
+            <i class="material-icons">business</i>Manufactor : <br> {{ computer.company?.name }}
+          </p>
+        </mat-card-content>
+      </div>
+
       <mat-card-actions>
 
         <div class="btn">
-          <button class="btn-edit" routerLink="/computers/{{ computer.id }}/update"><i class="material-icons">edit</i></button>
+          <button class="btn-edit" routerLink="/computers/{{ computer.id }}/update"><i class="material-icons">edit</i>
+          </button>
 
           <button class="btn-delete" (click)="delete(computer)"><i class="material-icons">delete</i></button>
         </div>
