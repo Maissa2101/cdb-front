@@ -3,11 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {User} from "../user.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../user.service";
-import {Alert} from "selenium-webdriver";
-import {AlertService} from "../alert.service";
 import { MatSnackBar } from '@angular/material';
-
-
 
 @Component({
   selector: 'app-login-add',
@@ -25,7 +21,6 @@ export class LoginAddComponent implements OnInit {
               private activatedRoutes: ActivatedRoute,
               private fb: FormBuilder,
               private userService: UserService,
-              private alertService: AlertService,
               public snackBar: MatSnackBar
   ) { }
 
@@ -51,19 +46,21 @@ export class LoginAddComponent implements OnInit {
 
   onSubmit(){
     if(this.userForm.controls.password.value == this.userForm.controls.password2.value ){
+
       this.user.login = this.userForm.controls.user.value;
       this.user.password = this.userForm.controls.password.value;
       this.userService.createUser(this.user).subscribe(() => console.info('user created'),
-        error => console.error('problem in add user', error));
-      this.router.navigate(['login']);
+        error => console.error('Problem for adding new user', error));
 
+      this.router.navigate(['login']);
 
       this.snackBar.open("Registration successfully !", "Close", {
         panelClass: 'snackbar-info',
         duration: 2500,});
     }
     else{
-      console.log('not the sames passwords');
+
+      console.info('Not the sames passwords');
 
       this.snackBar.open("The passwords are not the sames. Please try again", "Close", {
         panelClass: 'snackbar-error',
@@ -73,7 +70,6 @@ export class LoginAddComponent implements OnInit {
 
   onClickGoback(){
     this.router.navigate(['login']);
-    console.log('go back');
   }
 
   ngOnInit() {

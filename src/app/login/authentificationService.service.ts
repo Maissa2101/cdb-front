@@ -5,7 +5,6 @@ import { Observable } from "rxjs";
 import { User } from "./user.model";
 import { MatSnackBar } from '@angular/material';
 
-
 @Injectable()
 export class AuthenticationService {
   private baseUrl = "http://10.0.1.94:8080/cdb-webservice/users/";
@@ -41,7 +40,6 @@ export class AuthenticationService {
       duration: 2500,});
 
   }
-
 
   public clearLocalStorage() {
     localStorage.removeItem("token");
