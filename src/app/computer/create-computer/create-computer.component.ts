@@ -40,8 +40,8 @@ export class CreateComputerComponent implements OnInit {
   onSubmit(computer: Computer) {
     if (this.computerForm.controls.name.value) {
       this.computer.name = this.computerForm.controls.name.value;
-      this.computer.introduced = new Date(this.computerForm.controls.introduced.value).toISOString().substring(0, 10)
-      this.computer.discontinued = new Date(this.computerForm.controls.discontinued.value).toISOString().substring(0, 10)
+      this.computer.introduced = new Date(this.computerForm.controls.introduced.value).toISOString().substring(0, 10);
+      this.computer.discontinued = new Date(this.computerForm.controls.discontinued.value).toISOString().substring(0, 10);
       if (this.computerForm.controls.company.value !== '-1') {
         this.companies.forEach(localCompany => {
           if (localCompany.id === +this.computerForm.controls.company.value) {
@@ -57,12 +57,19 @@ export class CreateComputerComponent implements OnInit {
             panelClass: 'snackbar-ok',
             duration: 2500
           });
-        this.router.navigate([`/computers/`]);
+          this.router.navigate([`/computers/`]);
         }, error => {
-          this.snackBar.open('Can\'t add the computer. Please try again.', 'Close', {
-            panelClass: 'snackbar-error',
-            duration: 2500
-          });
+          if (error.status === 400) {
+            this.snackBar.open(error.error, 'Close', {
+              panelClass: 'snackbar-error',
+              duration: 2500
+            });
+          } else {
+            this.snackBar.open('Can\'t add the computer. Please try again.', 'Close', {
+              panelClass: 'snackbar-error',
+              duration: 2500
+            });
+          }
         }
       );
   }

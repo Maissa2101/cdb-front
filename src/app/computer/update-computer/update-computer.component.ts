@@ -83,7 +83,7 @@ export class UpdateComputerComponent implements OnInit {
           this.router.navigate([`/computers/` + this.id]);
         }, error => {
           if (error.status === 400) {
-            this.snackBar.open('Error in the fields, invalid entries (Check the dates).', 'Close', {
+            this.snackBar.open(error.error, 'Close', {
               panelClass: 'snackbar-error',
               duration: 2500
             });
