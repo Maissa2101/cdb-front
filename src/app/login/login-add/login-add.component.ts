@@ -5,6 +5,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../user.service";
 import {Alert} from "selenium-webdriver";
 import {AlertService} from "../alert.service";
+import { MatSnackBar } from '@angular/material';
+
 
 
 @Component({
@@ -23,7 +25,8 @@ export class LoginAddComponent implements OnInit {
                 private activatedRoutes: ActivatedRoute,
                 private fb: FormBuilder,
                 private userService: UserService,
-                private alertService: AlertService
+                private alertService: AlertService,
+                public snackBar: MatSnackBar
     ) { }
 
     createForm(){
@@ -53,10 +56,20 @@ export class LoginAddComponent implements OnInit {
           this.userService.createUser(this.user).subscribe(() => console.info('user created'),
                                                           error => console.error('problem in add user', error));
           this.router.navigate(['login']);
-          this.alertService.success('Registration successful', true)
+
+
+        this.snackBar.open("Registration successfully !", "Close", {
+          panelClass: 'snackbar-ok',
+          duration: 2500,});
+
+
       }
           else{
             console.log('not the sames passwords');
+
+        this.snackBar.open("The passwords are not the sames !", "Close", {
+          panelClass: 'snackbar-error',
+          duration: 2500,});
           }
     }
 
