@@ -31,11 +31,12 @@ export class AuthenticationService {
 
   public failLogin(error: any){
 
-    console.error("Authentification problem", error),
-      localStorage.removeItem("token");
+    localStorage.removeItem("token");
     localStorage.removeItem("role");
+    console.error(" problem", error.error);
 
-    this.snackBar.open("Username or password is incorrect. Please try again.", "Close", {
+
+    this.snackBar.open(error.error + " Please try again", "Close", {
       panelClass: 'snackbar-error',
       duration: 2500,});
 
@@ -65,6 +66,9 @@ export class AuthenticationService {
         token => this.noErrorlogin(token),
         error => {
           this.failLogin(error);
+
+
+
         }
       );
   }
