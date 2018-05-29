@@ -13,6 +13,7 @@ import { ComputersComponent } from './computer/computers/computers.component';
 import { CreateComputerComponent } from './computer/create-computer/create-computer.component';
 import { UpdateComputerComponent } from './computer/update-computer/update-computer.component';
 import { ComputerDetailsComponent } from './computer/computer-details/computer-details.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
     {
@@ -70,8 +71,13 @@ const routes: Routes = [
         pathMatch: 'full'
     },
     {
+        path: 'home',
+        component: HomepageComponent,
+        pathMatch: 'full'
+    },
+    {
         path: '**',
-        redirectTo: 'companies',
+        redirectTo: 'home',
         pathMatch: 'full'
     }
 ];

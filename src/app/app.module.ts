@@ -37,6 +37,7 @@ import { ComputerDetailsComponent } from "./computer/computer-details/computer-d
 import { ComputersComponent } from "./computer/computers/computers.component";
 import { CreateComputerComponent } from "./computer/create-computer/create-computer.component";
 import { UpdateComputerComponent } from "./computer/update-computer/update-computer.component";
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -56,8 +57,7 @@ import { UpdateComputerComponent } from "./computer/update-computer/update-compu
     LoginComponent,
     LoginAddComponent,
     AlertComponent,
-
-
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
