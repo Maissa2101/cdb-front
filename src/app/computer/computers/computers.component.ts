@@ -38,7 +38,6 @@ export class ComputersComponent implements OnInit {
           this.dataSource.sort = this.sort;
         },
         error =>  {
-          console.error('Problem in getting the computer', error);
           this.snackBar.open('Can\'t reach the database. Press F5 to refresh.', 'close', {
             panelClass: 'snackbar-error',
             duration: 2500,});
@@ -79,9 +78,10 @@ export class ComputersComponent implements OnInit {
   delete(computer: Computer) {
     this.computerService.deleteComputer(computer.id).subscribe(
       () => {
-      },
-      error =>  {
-        console.error('Problem in getting the computer', error);
+        this.snackBar.open('Computer(s) deleted.', 'close', {
+          panelClass: 'snackbar-info',
+          duration: 2500});
+      }, error =>  {
         this.snackBar.open('Can\'t delete the computer. Try again.', 'close', {
           panelClass: 'snackbar-error',
           duration: 2500});

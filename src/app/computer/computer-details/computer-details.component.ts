@@ -23,7 +23,6 @@ export class ComputerDetailsComponent implements OnInit {
       .subscribe(computer => this.computer = computer,
         error =>  {
           if (error.status == 404) {
-            console.error();
             this.snackBar.open('This page does not exist.', 'Close', {
               panelClass: 'snackbar-error',
               duration: 2500,});
@@ -43,9 +42,10 @@ export class ComputerDetailsComponent implements OnInit {
   delete(computer: Computer) {
     this.computerService.deleteComputer(computer.id).subscribe(
       () => {
-      },
-      error =>  {
-        console.error('Problem in getting the computer', error);
+        this.snackBar.open('Computer "' + computer.name + '" deleted.', 'close', {
+                panelClass: 'snackbar-info',
+                duration: 2500});
+      }, error =>  {
         this.snackBar.open('Can\'t delete the computer. Try again.', 'close', {
           panelClass: 'snackbar-error',
           duration: 2500});

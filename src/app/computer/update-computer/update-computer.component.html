@@ -7,30 +7,34 @@
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
-        <input matInput id="name" formControlName="name" name="name" value="{{computer?.name}}">
+        <input required matInput id="name" formControlName="name" name="name" value="{{computer?.name}}">
         <mat-hint>Computer's name</mat-hint>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Introduced</mat-label>
-        <input matInput id="introduced" formControlName="introduced" name="introduced" value="{{computer?.introduced}}">
+        <input [matDatepicker]="pickerI" matInput id="introduced" formControlName="introduced" name="introduced" value="{{computer?.introduced}}">
+        <mat-datepicker-toggle matSuffix [for]="pickerI"></mat-datepicker-toggle>
+        <mat-datepicker #pickerI></mat-datepicker>
         <mat-hint>Computer's introduced date.</mat-hint>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Discontinued</mat-label>
-        <input matInput id="discontinued" formControlName="discontinued" name="discontinued" value="{{computer?.discontinued}}">
+        <input [matDatepicker]="pickerD" matInput id="discontinued" formControlName="discontinued" name="discontinued" value="{{computer?.discontinued}}">
+        <mat-datepicker-toggle matSuffix [for]="pickerD"></mat-datepicker-toggle>
+        <mat-datepicker #pickerD></mat-datepicker>
         <mat-hint>Computer's discontinued date.</mat-hint>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="outline">
         <mat-label>Company</mat-label>
-        <mat-select *ngFor="let company of companies" required id="company" formControlName="company" name="company" value="{{computer?.company}}">
-          <mat-option>-- None --</mat-option>
-          <mat-option value="company">{{company.name}}</mat-option>
+        <mat-select id="company" formControlName="company" name="company" [(value)]="selectedValue">
+          <mat-option value="-1">-- None --</mat-option>
+          <mat-option *ngFor="let company of companies" value="{{company.id}}">{{company.name}}</mat-option>
         </mat-select>
         <mat-hint>Computer's manufacturer.</mat-hint>
       </mat-form-field>

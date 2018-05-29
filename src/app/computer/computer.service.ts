@@ -19,7 +19,7 @@ export class ComputerService {
         return this.http.get<Computer>(`${this.baseUrl}/computers/${id}`);
     }
 
-    addCompany(computer: Computer): Observable<any> {
+    addComputer(computer: Computer): Observable<any> {
         return this.http.post(`${this.baseUrl}/computers`, computer, {responseType: 'text'});
     }
 

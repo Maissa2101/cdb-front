@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import {MatButtonModule, MatCardModule, MatListModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatTableModule, MatCheckboxModule, MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS, MatOptionModule, MatSelectModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatListModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatTableModule, MatCheckboxModule, MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS, MatOptionModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 
 
 
@@ -21,7 +21,9 @@ import {MatButtonModule, MatCardModule, MatListModule, MatToolbarModule, MatForm
         MatCheckboxModule,
         MatSnackBarModule,
         MatOptionModule,
-        MatSelectModule
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
     exports: [
         MatToolbarModule,
@@ -37,7 +39,9 @@ import {MatButtonModule, MatCardModule, MatListModule, MatToolbarModule, MatForm
         MatCheckboxModule,
         MatSnackBarModule,
         MatOptionModule,
-        MatSelectModule
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
     declarations: []
 })

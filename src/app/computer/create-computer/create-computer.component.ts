@@ -30,7 +30,6 @@ export class CreateComputerComponent implements OnInit {
             this.companies = companies;
           },
           error =>  {
-            console.error('Problem in getting the company', error);
             this.snackBar.open('Can\'t reach the database. Press F5 to refresh.', 'close', {
               panelClass: 'snackbar-error',
               duration: 2500,});
@@ -42,15 +41,21 @@ export class CreateComputerComponent implements OnInit {
         this.computer.name = this.computerForm.controls.name.value;
         this.computer.introduced = this.computerForm.controls.introduced.value;
         this.computer.discontinued = this.computerForm.controls.discontinued.value;
-        this.computer.company = this.computerForm.controls.company.value;
+        if (this.computerForm.controls.company.value !== "-1") {
+          this.companies.forEach(localCompany => {
+            if(localCompany.id === +this.computerForm.controls.company.value) {
+              this.computer.company = localCompany;
+            }
+          });
+        };
       }
-      this.computerService.updateComputer(this.computer)
-        .subscribe(() => { console.log('computer updated');
-          this.snackBar.open("The computer has been updated.", "Close", {
+      this.computerService.addComputer(this.computer)
+        .subscribe(() => {
+          this.snackBar.open("The computer has been added to database.", "Close", {
             panelClass: 'snackbar-ok',
             duration: 2500});
-        }, error => { console.error('Problem in update computer', error);
-          this.snackBar.open("Can't update the computer. Please try again.", "Close", {
+        }, error => {
+          this.snackBar.open("Can't add the computer. Please try again.", "Close", {
             panelClass: 'snackbar-error',
             duration: 2500})
         }
