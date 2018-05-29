@@ -52,8 +52,8 @@ export class CompaniesComponent implements OnInit {
     }
   }
 
-  isConnected() : boolean{
-    if (localStorage.getItem("token")) {
+  isConnected(): boolean{
+    if (localStorage.getItem('token')) {
       return true;
     }
     return false;
@@ -89,7 +89,8 @@ export class CompaniesComponent implements OnInit {
   }
 
   deleteMultiple() {
-    this.selection.selected.forEach(company => this.delete(company) );
+    this.selection.selected.forEach(company => this.delete(company));
+    this.router.navigate([`/companies/`]);
   }
 
 

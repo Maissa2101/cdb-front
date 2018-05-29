@@ -27,18 +27,7 @@ export class CompanyService {
         return this.http.delete(`${this.baseUrl}/companies/${id}`, {responseType: 'text'});
     }
 
-    deleteCompanies(ids: number[]): void {
-        ids.forEach(id => {
-            this.deleteCompany(id);
-        });
-    }
-
     updateCompany(company: Company): Observable<any> {
         return this.http.patch(`${this.baseUrl}/companies`, company, {responseType: 'text'});
-    }
-
-    search(search: string): Observable<Company[]> {
-      return this.http.get<Company[]>(`${this.baseUrl}/companies/${search}`);
-
     }
 }

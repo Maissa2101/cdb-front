@@ -48,7 +48,7 @@ export class CompanyDetailsComponent implements OnInit {
 
   delete(company: Company) {
     this.companyService.deleteCompany(company.id).subscribe(
-      () => {},
+      () => {this.router.navigate([`/companies/`]);},
       error => {
         console.error('Problem in getting the company', error);
         this.snackBar.open('Can\'t delete the company. Try again.', 'close', {
