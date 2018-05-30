@@ -29,7 +29,9 @@ export class UpdateComputerComponent implements OnInit {
     this.computerService.getById(this.id)
       .subscribe(computer => {
           this.computer = computer;
-          this.selectedValue = this.computer.company.id.toString();
+          if (this.computer.company) {
+            this.selectedValue = this.computer.company.id.toString();
+          }
         }, error => {
           if (error.status > 499) {
             this.snackBar.open('Can\'t reach the database. Press F5 or try later.', 'Close', {
@@ -72,8 +74,12 @@ export class UpdateComputerComponent implements OnInit {
     } else {
       this.computer.company = null;
     }
-    this.computer.introduced = new Date(this.computerForm.controls.introduced.value).toISOString().substring(0, 10);
-    this.computer.discontinued = new Date(this.computerForm.controls.discontinued.value).toISOString().substring(0, 10);
+    if (this.computerForm.controls.introduced.value) {
+      this.computer.introduced = new Date(this.computerForm.controls.introduced.value).toISOString().substring(0, 10);
+    }
+    if (this.computerForm.controls.discontinued.value) {
+      this.computer.discontinued = new Date(this.computerForm.controls.discontinued.value).toISOString().substring(0, 10);
+    }
     this.computerService.updateComputer(this.computer)
       .subscribe(() => {
           this.snackBar.open('The computer has been updated.', 'Close', {

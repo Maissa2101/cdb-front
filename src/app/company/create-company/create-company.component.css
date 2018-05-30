@@ -12,13 +12,46 @@ button {
 
 mat-form-field {
   margin: 10px;
+  width:100%;
 }
 
 h3 {
     margin-bottom: 20px;
+    font-family: Rubik;
+}
+
+h2 {
+  font-family: Rubik;
 }
 
 a {
   text-decoration: none;
   color: black;
 }
+
+.center {
+  text-align: center;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alignement {
+  margin-top: 30px;
+}
+
+.btn {
+  margin-left: 24px;
+  margin-top: 30px;
+}
+
+mat-divider {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #721c24;
+}
+
+.cid-qSGshc4hgR {
+  margin-top: 50px;
+}
+

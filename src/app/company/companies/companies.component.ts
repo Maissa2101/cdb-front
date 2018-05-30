@@ -75,7 +75,7 @@ export class CompaniesComponent implements OnInit {
 
   deleteMultiple() {
     if (this.selection.selected.length > 0) {
-      if (confirm('Are you sure to delete these companies ?')) {
+      if (confirm('Are you sure you want to delete these companies ?')) {
         this.selection.selected.forEach(company => this.delete(company));
         window.location.reload();
       }

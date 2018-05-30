@@ -41,7 +41,7 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   delete(company: Company) {
-    if (confirm('Are you sure to delete this company ?')) {
+    if (confirm('Are you sure you want to delete this company ?')) {
       this.companyService.deleteCompany(company.id).subscribe(
         () => {
           this.router.navigate([`/companies/`]);
