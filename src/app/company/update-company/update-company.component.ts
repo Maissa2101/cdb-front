@@ -25,7 +25,6 @@ export class UpdateCompanyComponent implements OnInit {
     this.companyService.getById(this.id)
       .subscribe(company => this.company = company,
         error => {
-          console.error('Problem in getting the company', error);
           this.snackBar.open('Can\'t reach the database. Press F5 to refresh.', 'Close', {
             panelClass: 'snackbar-error',
             duration: 2500
@@ -41,14 +40,12 @@ export class UpdateCompanyComponent implements OnInit {
     }
     this.companyService.updateCompany(this.company)
       .subscribe(() => {
-          console.log('company updated');
           this.snackBar.open('The company has been updated.', 'Close', {
             panelClass: 'snackbar-ok',
             duration: 2500
           });
         this.router.navigate([`/companies/` + this.id]);
         }, error => {
-          console.error('Problem in update company', error);
           this.snackBar.open('Can\'t update the company. Please try again.', 'Close', {
             panelClass: 'snackbar-error',
             duration: 2500

@@ -24,14 +24,12 @@ export class CreateCompanyComponent {
     this.company.logo = this.companyGroup.controls.logo.value;
     this.companyService.addCompany(this.company)
       .subscribe(() => {
-        console.log('new company added');
         this.snackBar.open('New company added to database.', 'Close', {
           panelClass: 'snackbar-ok',
           duration: 2500,
         });
         this.router.navigate([`/companies/`]);
       }, error => {
-        console.error('Problem in add new company', error);
         this.snackBar.open('Problem in adding company, please try again.', 'Close', {
           panelClass: 'snackbar-error',
           duration: 2500,
