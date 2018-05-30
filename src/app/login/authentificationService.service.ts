@@ -18,7 +18,7 @@ export class AuthenticationService {
         localStorage.setItem("role", user.role.label);
         this.router.navigate(["companies"]);
 
-        this.snackBar.open("Success login", "Close", {
+        this.snackBar.open('Login success', "Close", {
           panelClass: 'snackbar-info',
           duration: 2500,});
       },
@@ -35,7 +35,7 @@ export class AuthenticationService {
       localStorage.removeItem("token");
     localStorage.removeItem("role");
 
-    this.snackBar.open("Username or password is incorrect. Please try again.", "Close", {
+    this.snackBar.open(error.error + ' please try again', "Close", {
       panelClass: 'snackbar-error',
       duration: 2500,});
 

@@ -17,9 +17,6 @@ export class ComputersComponent implements OnInit {
   selection = new SelectionModel<Computer>(true, []);
   computers: Computer[] = [];
 
-  @Input()
-  display = false;
-
   @Output() deleteR = new EventEmitter<Computer>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -58,10 +55,6 @@ export class ComputersComponent implements OnInit {
     return false;
   }
 
-  isOneSelected() {
-    this.display = !this.display;
-    return true;
-  }
 
   delete(computer: Computer) {
     this.computerService.deleteComputer(computer.id).subscribe(
@@ -77,9 +70,11 @@ export class ComputersComponent implements OnInit {
   }
 
   deleteMultiple() {
-    if (confirm('Are you sure to delete these computers ?')) {
-      this.selection.selected.forEach(computer => this.delete(computer));
-      window.location.reload();
+    if (this.selection.selected.length > 0) {
+      if (confirm('Are you sure to delete these computers ?')) {
+        this.selection.selected.forEach(computer => this.delete(computer));
+        window.location.reload();
+      }
     }
   }
 

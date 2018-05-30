@@ -1,18 +1,18 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   Validators
-} from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { User } from "../user.model";
-import { UserService } from "../user.service";
-import { AuthenticationService } from "../authentificationService.service";
+} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
+import { AuthenticationService } from '../authentificationService.service';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   user: User;
@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
 
   createForm() {
     this.userForm = this.fb.group({
-      user: ["", Validators.required],
-      password: ["", Validators.required]
+      user: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
@@ -45,6 +45,6 @@ export class LoginComponent implements OnInit {
   }
 
   onClickSignUp() {
-    this.router.navigate(["loginAdd"]);
+    this.router.navigate(['loginAdd']);
   }
 }

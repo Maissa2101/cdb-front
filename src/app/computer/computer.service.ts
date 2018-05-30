@@ -27,12 +27,6 @@ export class ComputerService {
         return this.http.delete(`${this.baseUrl}/computers/${id}`, {responseType: 'text'});
     }
 
-    deleteComputers(ids: number[]): void {
-        ids.forEach(id => {
-            this.deleteComputer(id);
-        });
-    }
-
     updateComputer(computer: Computer): Observable<any> {
         return this.http.patch(`${this.baseUrl}/computers`, computer, {responseType: 'text'});
     }

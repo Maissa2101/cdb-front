@@ -17,9 +17,6 @@ export class CompaniesComponent implements OnInit {
   selection = new SelectionModel<Company>(true, []);
   companies: Company[] = [];
 
-  @Input()
-  display = false;
-
   @Output() deleteR = new EventEmitter<Company>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -63,11 +60,6 @@ export class CompaniesComponent implements OnInit {
     return false;
   }
 
-  isOneSelected() {
-    this.display = !this.display;
-    return true;
-  }
-
   delete(company: Company) {
     this.companyService.deleteCompany(company.id).subscribe(
       () => {
@@ -82,9 +74,11 @@ export class CompaniesComponent implements OnInit {
   }
 
   deleteMultiple() {
-    if (confirm('Are you sure to delete these companies ?')) {
-      this.selection.selected.forEach(company => this.delete(company));
-      window.location.reload();
+    if (this.selection.selected.length > 0) {
+      if (confirm('Are you sure to delete these companies ?')) {
+        this.selection.selected.forEach(company => this.delete(company));
+        window.location.reload();
+      }
     }
   }
 

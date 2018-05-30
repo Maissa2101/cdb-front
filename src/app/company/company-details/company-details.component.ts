@@ -14,9 +14,6 @@ export class CompanyDetailsComponent implements OnInit {
   id: number;
   company: Company;
 
-  showDetails = false;
-  buttonLabel = 'See computers';
-
   constructor(private companyService: CompanyService, private route: ActivatedRoute, private router: Router, public snackBar: MatSnackBar) {
     this.id = +this.route.snapshot.paramMap.get('id');
   }
@@ -67,8 +64,4 @@ export class CompanyDetailsComponent implements OnInit {
     return false;
   }
 
-  toggleExpand() {
-    this.showDetails = !this.showDetails;
-    this.buttonLabel = this.showDetails ? 'See less' : 'See computers';
-  }
 }
