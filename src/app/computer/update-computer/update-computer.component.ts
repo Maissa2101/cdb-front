@@ -37,7 +37,6 @@ export class UpdateComputerComponent implements OnInit {
         this.computer = computer;
         if (this.computer.company) {
           this.selectedValue = this.computer.company.id.toString();
-          console.log("YAY" + this.selectedValue)
         }
       },
       error => {

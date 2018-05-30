@@ -58,7 +58,7 @@ export class CompanyDetailsComponent implements OnInit {
   }
 
   isConnected(): boolean {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem("role") && localStorage.getItem("role") == "ROLE_ADMIN") {
       return true;
     }
     return false;

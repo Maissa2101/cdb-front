@@ -34,7 +34,7 @@
 
       <mat-card-actions>
 
-        <div class="btn">
+        <div *ngIf="isConnected()" class="btn">
           <button class="btn-edit" routerLink="/computers/{{ computer.id }}/update"><i class="material-icons">edit</i>
           </button>
 

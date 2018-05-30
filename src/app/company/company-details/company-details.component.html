@@ -34,11 +34,11 @@
 
       <mat-card-actions>
 
-        <div>
-          <button *ngIf="isConnected()" class="btn-edit" routerLink="/companies/{{ company.id }}/update"><i
+        <div *ngIf="isConnected()" >
+          <button class="btn-edit" routerLink="/companies/{{ company.id }}/update"><i
             class="material-icons">edit</i></button>
 
-          <button *ngIf="isConnected()" class="btn-delete" (click)="delete(company)"><i
+          <button class="btn-delete" (click)="delete(company)"><i
             class="material-icons">delete</i></button><br>
         </div>
 
