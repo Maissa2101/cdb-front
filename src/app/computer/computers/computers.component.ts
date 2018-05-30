@@ -55,7 +55,6 @@ export class ComputersComponent implements OnInit {
     return false;
   }
 
-
   delete(computer: Computer) {
     this.computerService.deleteComputer(computer.id).subscribe(
       () => {
@@ -71,7 +70,7 @@ export class ComputersComponent implements OnInit {
 
   deleteMultiple() {
     if (this.selection.selected.length > 0) {
-      if (confirm('Are you sure to delete these computers ?')) {
+      if (confirm('Are you sure you want to delete these computers ?')) {
         this.selection.selected.forEach(computer => this.delete(computer));
         window.location.reload();
       }

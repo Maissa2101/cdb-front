@@ -40,7 +40,7 @@ export class ComputerDetailsComponent implements OnInit {
   }
 
   delete(computer: Computer) {
-    if (confirm('Are you sure to delete this computer ?')) {
+    if (confirm('Are you sure tou want to delete this computer ?')) {
       this.computerService.deleteComputer(computer.id).subscribe(
         () => {
           this.snackBar.open('Computer "' + computer.name + ' deleted.', 'close', {
