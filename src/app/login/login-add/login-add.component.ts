@@ -49,19 +49,19 @@ export class LoginAddComponent implements OnInit {
 
       this.user.login = this.userForm.controls.user.value;
       this.user.password = this.userForm.controls.password.value;
-      this.userService.createUser(this.user).subscribe(() => console.info('user created'),
-        error => console.error('Problem for adding new user', error));
+      this.userService.createUser(this.user).subscribe(() => {
+          this.snackBar.open("Registration successfully !", "Close", {
+            panelClass: 'snackbar-info',
+            duration: 2500,});
+          this.router.navigate(['login']);},
+        error => {
 
-      this.router.navigate(['login']);
-
-      this.snackBar.open("Registration successfully !", "Close", {
-        panelClass: 'snackbar-info',
-        duration: 2500,});
-    }
-    else{
+          this.snackBar.open("Registration problem. Please try with a different username.", "Close", {
+            panelClass: 'snackbar-error',
+            duration: 2500});})
+    } else{
 
       console.info('Not the sames passwords');
-
       this.snackBar.open("The passwords are not the sames. Please try again", "Close", {
         panelClass: 'snackbar-error',
         duration: 2500,});

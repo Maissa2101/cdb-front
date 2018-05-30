@@ -16,7 +16,7 @@ export class AuthenticationService {
     this.getCurrentUser().subscribe(
       user => {
         localStorage.setItem("role", user.role.label);
-        this.router.navigate(["companies"]);
+        this.router.navigate(["home"]);
 
         this.snackBar.open('Login success', "Close", {
           panelClass: 'snackbar-info',
